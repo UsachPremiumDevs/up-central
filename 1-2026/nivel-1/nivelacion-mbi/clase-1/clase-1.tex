@@ -1,0 +1,504 @@
+\documentclass[letterpaper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+
+\geometry{letterpaper, margin=2.5cm}
+
+% Ajuste para la altura del encabezado
+\setlength{\headheight}{15pt}
+
+\newcommand{\logoinstitucion}{./images/logo_up.png}
+\newcommand{\logoup}{./images/logo_up.png}
+\newcommand{\logousach}{./images/logo_usach.png}
+
+% Información para la portada y encabezados
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\guiasnumero}{Guía 1 - Ayudantías de Nivelación Matemática}
+\newcommand{\guiascontenido}{
+    \begin{center}
+    \begin{tabular}{r@{\quad$\Rightarrow$\quad}l}
+        & \textit{Productos notables} \\[6pt]
+        & \textit{Reconozca el producto notable y expréselo en su forma original} \\[6pt]
+        & \textit{Reducción y simplificación de expresiones} \\[6pt]
+        & \textit{Ecuaciones de primer y segundo grado} \\
+    \end{tabular}
+    \end{center}
+}
+\newcommand{\preparadopor}{Usach premium.}
+\newcommand{\fecha}{1er. Semestre de 2026}
+\newcommand{\transparencia}{0.05}
+\newcommand{\webinstitucion}{www.usachpremium.cl}
+\newcommand{\instagraminstitucion}{https://www.instagram.com/usach.premium}
+\definecolor{enlace}{HTML}{0000FF}
+
+% Configuración de hyperref para solo cambiar el color del texto
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% Definición de los encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\href{http://\webinstitucion}{\institucion}}
+\fancyhead[C]{\curso}
+\fancyhead[R]{\guiasnumero}
+\fancyfoot[L]{\preparadopor}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Estilo para páginas sin encabezado (como la portada)
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% Imagen de fondo con transparencia
+\newcommand{\PonerLogoFondo}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){\transparent{\transparencia}\includegraphics[width=0.7\textwidth]{\logoinstitucion}}
+        }
+    }
+}
+
+% Estilo de página para el formulario con frase en el pie
+\fancypagestyle{formularioconfrase}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.5pt}
+  \fancyfoot[C]{\textbf{``La matemática es la reina de las ciencias''} \par \textit{- Carl Friedrich Gauss}}
+}
+
+% Sección de ejercicios
+\newenvironment{Introduccion}
+{\section*{Introducción}
+\PonerLogoFondo}
+{}
+
+% Sección de ejercicios
+\newenvironment{ejercicios}
+{\section*{Ejercicios}
+\PonerLogoFondo}
+{}
+
+% Sección de soluciones
+\newenvironment{soluciones}
+{\section*{Soluciones}
+\PonerLogoFondo}
+{}
+
+\begin{document}
+
+% Portada
+\begin{titlepage}
+\thispagestyle{plain}
+
+\AddToShipoutPicture*{%
+  \put(54, 700){\includegraphics[width=2cm]{\logoup}}      % Logo superior izquierdo
+  \put(420, 706){\includegraphics[width=5cm]{\logousach}}  % Logo superior derecho
+}
+
+\centering
+% Aumentamos el primer 'stretch' para empujar todo hacia abajo
+\vspace*{\stretch{2}}
+
+{\LARGE \textbf{\institucion} \par}
+\vspace{0.5cm}
+{\huge \textbf{\curso} \par}
+\vspace{0.8cm}
+{\Large \textbf{\guiasnumero} \par}
+\vspace{0.8cm}
+{\large \textit{\guiascontenido} \par}
+
+% Reducimos el 'stretch' del medio para mantener una buena proporción
+\vspace*{\stretch{2.5}}
+
+\noindent\begin{minipage}{\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushleft}
+{\large \preparadopor \par}
+{\large \fecha \par}
+\end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushright}
+{\large Web: \href{http://\webinstitucion}{\webinstitucion} \par}
+{\large Instagram: \href{\instagraminstitucion}{@usach.premium}}
+\end{flushright}
+\end{minipage}
+\end{minipage}
+
+% Aumentamos el 'stretch' final para que no quede tan pegado abajo
+\vspace*{\stretch{0.5}}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{Introduccion}
+    Como equipo de Usach Premium, hemos preparado esta guía porque sabemos que antes de sumergirnos en los límites y derivadas del Cálculo, es vital asegurar nuestros cimientos. A menudo, el mayor desafío en la universidad no es comprender los conceptos nuevos, sino la manipulación algebraica necesaria para llegar al resultado final.
+
+    Repasar ecuaciones, productos notables y simplificación te dará la agilidad necesaria para no quedarte atascado en el álgebra básica. Dominar estos atajos matemáticos evitará que errores de signos o multiplicaciones arruinen el desarrollo de problemas largos, ahorrándote un tiempo valioso en tus Peps.
+
+    % Espacio para separar el texto de la imagen
+    \vspace{0.8cm} 
+    \vfill
+    \begin{center}
+        % Ajusta el 0.5 por el tamaño que prefieras (0.5 es la mitad del ancho de la página)
+        \includegraphics[width=0.9\textwidth]{./images/USACHIN.png}
+    \end{center}
+\end{Introduccion}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Sección de ejercicios
+\begin{ejercicios}
+\begin{enumerate}[label=\arabic*.]
+
+    %Primera seccion de ejercicios llamada productos notables.
+    \item Resuelva los siguientes productos notables:
+     \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]
+        \item $\displaystyle (x + 5)^2$
+        \item $\displaystyle (2a - 3)(2a + 3)$
+        \item $\displaystyle (y - 7)^2$
+        \item $\displaystyle (m + 4)(m + 6)$
+        \item $\displaystyle (3x + 2y)^2$
+        \item $\displaystyle (5p - 4q)(5p + 4q)$
+        \item $\displaystyle (x - 8)(x + 3)$
+        \item $\displaystyle (2m - 5)^2$
+        \item $\displaystyle (a + 2)^3$
+        \item $\displaystyle (4x + 1)(4x - 5)$
+        \item $\displaystyle \left(\frac{1}{2}x + \frac{2}{3}y\right)^2$
+        \item $\displaystyle (3x^3 - 4y^2)(3x^3 + 4y^2)$
+        \item $\displaystyle (2m - 5n)^3$
+        \item $\displaystyle (x^2 - 7)(x^2 + 5)$
+        \item $\displaystyle (a + 2b - 3c)^2$
+        \item $\displaystyle (5x^2y + 2z^3)^2$
+        \item $\displaystyle (4x^2 - 3)(2x^2 + 5)$
+        \item $\displaystyle \left(\frac{x}{3} + 3y\right)^3$
+        \item $\displaystyle (-2x^3 - 5y)^2$
+        \item $\displaystyle (x + y - 2)(x + y + 2)$
+        \item $\displaystyle \left(\frac{3}{4}x - \frac{1}{2}y\right)^2$
+        \item $\displaystyle (2x^a + 3y^b)(2x^a - 3y^b)$
+        \item $\displaystyle (4m^2 - 5n^3)^3$
+        \item $\displaystyle (x + y + z)(x + y - z)$
+        \item $\displaystyle (3a - 2b + c)^2$
+        \item $\displaystyle \left(2x + \frac{1}{2}\right)^3$
+        \item $\displaystyle (5x^{m+1} - 2)(5x^{m+1} + 7)$
+        \item $\displaystyle (ab^2 - c^3)(ab^2 + c^3)$
+        \item $\displaystyle (2x^2 + 3x - 1)^2$
+        \item $\displaystyle \left(\frac{1}{3}a^3 + 6b^2\right)^2$
+        \item $\displaystyle \left(\frac{2}{5}m^2 - \frac{1}{2}n\right)^3$
+        \item $\displaystyle \left(\frac{3}{7}x^4 + \frac{2}{5}y^3\right)\left(\frac{3}{7}x^4 - \frac{2}{5}y^3\right)$
+        \item $\displaystyle (4x^3y - 5)(4x^3y + 9)$
+        \item $\displaystyle (2x^2 - 3y + 4z)^2$
+        \item $\displaystyle (2x + 3y)(4x^2 - 6xy + 9y^2)$
+        \item $\displaystyle (x^a + y^{b+1})^3$
+        \item $\displaystyle (x^2 - x + 1)(x^2 + x + 1)$
+        \item $\displaystyle (3a^x - 5b^y)^2$
+        \item $\displaystyle \left(\frac{1}{4}a^2 + 6\right)\left(\frac{1}{4}a^2 - 2\right)$
+        \item $\displaystyle (5x^2 - 3x - 2)^2$
+     \end{enumerate}
+\newpage
+%Tercera seccion de ejercicios llamada Reducción y simplifiación de expresiones.
+\item Reduzca al máximo posible las siguientes expresiones: 
+    \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]
+        \item $\displaystyle 3x + 5y - 2x + 7y$
+        \item $\displaystyle 4(2a - 3b) - 3(a - 5b)$
+        \item $\displaystyle 2x - [3x - (5x - 2)]$
+        \item $\displaystyle \frac{1}{2}m + \frac{2}{3}m - \frac{1}{6}m$
+        \item $\displaystyle 5x^2y - 3xy^2 + 2x^2y + 7xy^2$
+        \item $\displaystyle \frac{15a^3b^2}{5ab}$
+        \item $\displaystyle 2m^2(3m - 4) - 5m(m^2 - 2m)$
+        \item $\displaystyle 7p - 2q + 5p - 3(p - 2q) + 4q$
+        \item $\displaystyle \frac{4x^2 - 8x}{4x}$
+        \item $\displaystyle x^2 - \big(2x + [3x^2 - (x^2 - 4x)] - 5\big)$
+        \item $\displaystyle 5x - \big( 2y + [ 3x - (4y - x) - 5y ] \big)$
+        \item $\displaystyle \frac{3}{4}a^2b - \frac{1}{2}ab^2 + \frac{5}{6}a^2b + \frac{2}{3}ab^2$
+        \item $\displaystyle 3m^2(2m - 5n) - 2m(3m^2 + 4mn)$
+        \item $\displaystyle 2a - [3b - (2a + c) - \big(5a - (3b - 2c)\big)]$
+        \item $\displaystyle \frac{1}{2}(4x - 6y) - \frac{2}{3}(9x + 3y)$
+        \item $\displaystyle (2x - 3)(x + 4) - (x - 2)^2$
+        \item $\displaystyle 4x^3y^2 - 5x^2y^3 + 2x^3y^2 - x^2y^3 + 7x^2y^3$
+        \item $\displaystyle x - \left[ \frac{x}{2} - \left( \frac{x}{3} - \frac{x}{4} \right) \right]$
+        \item $\displaystyle \frac{12a^3b - 8a^2b^2}{4ab} - 2a(a - b)$
+        \item $\displaystyle -3 \big( 2x^2 - [ 4x - (x^2 - 3x) + 5 ] - x^2 \big)$
+        \item $\displaystyle 5a - [3b - \big(4a - (5b - 2a) - 3b\big) + 2a]$
+        \item $\displaystyle \frac{2x - 1}{3} - \frac{x + 4}{2} + \frac{3x - 5}{6}$
+        \item $\displaystyle (3x - 2)(2x + 5) - (x + 4)(6x - 1)$
+        \item $\displaystyle 2x^{a+1} - 3x^{a+1} + \frac{5}{2}x^{a+1} - x^{a+1}$
+        \item $\displaystyle 2x^2 - \big( 3xy - [ x^2 - (2xy - y^2) + 2x^2 ] - y^2 \big)$
+        \item $\displaystyle \frac{1}{2}m^2n - \frac{2}{3}mn^2 + \frac{3}{4}m^2n - \frac{1}{6}mn^2$
+        \item $\displaystyle \frac{-15x^4y^3 + 10x^3y^4 - 5x^2y^2}{-5x^2y^2}$
+        \item $\displaystyle \frac{2}{5}(10x - 15y) - \frac{1}{4}(8x + 12y)$
+        \item $\displaystyle (2a - 3b)^2 - (2a + 3b)^2$
+        \item $\displaystyle -\big( - [ - (x - y) + 2x ] - 3y \big) + x$
+        \item $\displaystyle \frac{1}{2}x - \left[ \frac{3}{4}x - \left( 2x - \frac{1}{3}y \right) \right]$
+        \item $\displaystyle \frac{24a^3b^2c - 18a^2b^3c^2 + 12ab^2c}{6ab^2c}$
+        \item $\displaystyle (3x - 2y)^3 - (3x + 2y)^3$
+        \item $\displaystyle -2x^2[3x - 5(x^2 - 2) + 4x] - 10x^2$
+        \item $\displaystyle \frac{2a - 3b}{4} - \frac{a + 2b}{3} + \frac{5a - b}{12}$
+        \item $\displaystyle 5m - \big( 2n + 3m - [ 4m - (2n - m) - 3n ] \big)$
+        \item $\displaystyle (x^2 - 2x + 4)(x + 2) - (x^3 - 8)$
+        \item $\displaystyle 4x^{m+2} - 3x^{m+2} + 5x^{m+1} - x^{m+2} + 2x^{m+1}$
+        \item $\displaystyle (a + b - c)^2 - (a - b + c)^2$
+        \item $\displaystyle \frac{1}{5}(10x^2 - 15xy) - \frac{1}{3}(9x^2 + 6xy) + \frac{1}{2}(4x^2 - 8xy)$
+    %Tercera seccion de ejercicios llamada factorizacion de productos notables
+\newpage
+    \item Reconozca el producto notable y expréselo en su forma original (factorizada):
+    \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]
+        % --- TRINOMIO AL CUADRADO (8 ejercicios) ---
+        \item $\displaystyle a^2 + b^2 + c^2 + 2ab + 2ac + 2bc$
+        \item $\displaystyle x^2 + y^2 + 9 + 2xy + 6x + 6y$
+        \item $\displaystyle 4m^2 + n^2 + p^2 + 4mn - 4mp - 2np$
+        \item $\displaystyle 9x^2 + 4y^2 + z^2 - 12xy + 6xz - 4yz$
+        \item $\displaystyle a^2 + 4b^2 + 1 - 4ab + 2a - 4b$
+        \item $\displaystyle 16x^2 + 9y^2 + 25z^2 + 24xy + 40xz + 30yz$
+        \item $\displaystyle m^4 + m^2 + 1 + 2m^3 + 2m^2 + 2m$
+        \item $\displaystyle \frac{1}{4}x^2 + y^2 + z^2 + xy - xz - 2yz$
+
+        % --- SUMA Y DIFERENCIA DE CUBOS (8 ejercicios) ---
+        \item $\displaystyle x^3 + 8$
+        \item $\displaystyle a^3 - 27$
+        \item $\displaystyle 8m^3 + 125$
+        \item $\displaystyle 64y^3 - 1$
+        \item $\displaystyle 27x^3 + y^3$
+        \item $\displaystyle 125a^3 - 64b^3$
+        \item $\displaystyle x^6 + 216$
+        \item $\displaystyle \frac{1}{8}m^3 - \frac{1}{27}n^3$
+
+        % --- OTROS PRODUCTOS NOTABLES (Mezcla para completar 40) ---
+        \item $\displaystyle x^2 + 14x + 49$
+        \item $\displaystyle 4a^2 - 9$
+        \item $\displaystyle y^2 - 18y + 81$
+        \item $\displaystyle m^2 + 11m + 28$
+        \item $\displaystyle 16x^2 - 25y^2$
+        \item $\displaystyle 9p^2 + 30pq + 25q^2$
+        \item $\displaystyle x^2 - 2x - 15$
+        \item $\displaystyle 49m^2 - 64n^2$
+        \item $\displaystyle a^3 + 3a^2 + 3a + 1$
+        \item $\displaystyle 8x^3 - 36x^2 + 54x - 27$
+        \item $\displaystyle x^4 - 16$
+        \item $\displaystyle 25x^2 - 20x + 4$
+        \item $\displaystyle m^2 - 5m - 36$
+        \item $\displaystyle 4x^{2a} - 9y^{2b}$
+        \item $\displaystyle a^2b^2 - c^2$
+        \item $\displaystyle x^3 + 9x^2 + 27x + 27$
+        \item $\displaystyle 100 - 16x^2$
+        \item $\displaystyle y^4 + 10y^2 + 25$
+        \item $\displaystyle x^2 + (a+b)x + ab$
+        \item $\displaystyle 36a^6 - 49b^4$
+        \item $\displaystyle \frac{1}{9}x^2 - \frac{4}{25}y^2$
+        \item $\displaystyle a^{2x} + 2a^xb^y + b^{2y}$
+        \item $\displaystyle x^4 + x^2 + 1$ % (Identidad de Argand / Diferencia de cuadrados oculta)
+        \item $\displaystyle 4x^2 + 12xy + 9y^2$
+    \end{enumerate}
+
+    %Cuarta seccion de ejercicios de primer y segundo grado
+\newpage
+    \item Resuelve las siguientes ecuaciones de primer y segundo grado. Muestra todo tu desarrollo:
+    
+    \vspace{0.5cm} % Pequeño espacio antes de empezar la lista de letras
+    \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]        
+        \item $\displaystyle 3x - 5 = 10$
+        \item $\displaystyle 2(x + 4) = 14$        
+        \item $\displaystyle \frac{5x}{2} + 3 = 18$     
+        \item $\displaystyle 4x - 7 = 2x + 9$
+        \item $\displaystyle 3(2x - 1) + 4 = 5x + 8$
+        \item $\displaystyle 3x^2 -12x = 0$
+        \item $\displaystyle 2x^2 + 7x + 3 = 0$        
+        \item $\displaystyle x^2 - 9=0$     
+        \item $\displaystyle x^2 - 5x + 6 = 0$
+        \item $\displaystyle x^2 - 4x -5 = 0$
+        \item $\displaystyle 5x - 12 = 3x + 4$
+        \item $\displaystyle x^2 - 7x + 10 = 0$
+        \item $\displaystyle 4(x - 2) + 1 = x - 10$
+        \item $\displaystyle x^2 - 16 = 0$
+        \item $\displaystyle \frac{x}{3} + 5 = 2$
+        \item $\displaystyle x^2 + 6x + 9 = 0$
+        \item $\displaystyle 7x - 3(x + 2) = 14$
+        \item $\displaystyle 2x^2 - 5x - 3 = 0$
+        \item $\displaystyle \frac{3x + 2}{4} = 5$
+        \item $\displaystyle x^2 - x - 12 = 0$
+        \item $\displaystyle 8x - 5 = 3x + 20$
+        \item $\displaystyle x^2 - 8x + 15 = 0$
+        \item $\displaystyle 6(x - 1) - 2x = 10$
+        \item $\displaystyle 3x^2 - 27 = 0$
+        \item $\displaystyle \frac{2x - 1}{3} = x - 2$
+        \item $\displaystyle x^2 + 2x - 8 = 0$
+        \item $\displaystyle x + \frac{x}{2} = 9$
+        \item $\displaystyle 4x^2 - 12x + 9 = 0$
+        \item $\displaystyle 5 - 2(x + 3) = -3x + 2$
+        \item $\displaystyle 2x^2 + 5x - 12 = 0$
+        \item $\displaystyle 7x + 2 = 4x - 13$
+        \item $\displaystyle x^2 - 25 = 0$
+        \item $\displaystyle 3(x + 5) - 2 = 4x + 6$
+        \item $\displaystyle x^2 + x - 20 = 0$
+        \item $\displaystyle \frac{x}{4} - 2 = \frac{x}{2} - 5$
+        \item $\displaystyle 2x^2 - 8x = 0$
+        \item $\displaystyle 9x - (2x + 1) = 5x + 11$
+        \item $\displaystyle x^2 - 10x + 25 = 0$
+        \item $\displaystyle \frac{2x + 3}{5} = \frac{x - 1}{2}$
+        \item $\displaystyle 3x^2 + x - 2 = 0$
+    \end{enumerate}
+    
+\end{enumerate}
+\end{ejercicios}
+
+\newpage
+
+% Sección de soluciones
+\begin{soluciones}
+\begin{enumerate}[label=\arabic*., itemsep=2em]
+    \item Soluciones a los productos notables:
+    \begin{enumerate}[label=\arabic*), itemsep=1em]
+        \item $x^2 + 10x + 25$
+        \item $4a^2 - 9$
+        \item $y^2 - 14y + 49$
+        \item $m^2 + 10m + 24$
+        \item $9x^2 + 12xy + 4y^2$
+        \item $25p^2 - 16q^2$
+        \item $x^2 - 5x - 24$
+        \item $4m^2 - 20m + 25$
+        \item $a^3 + 6a^2 + 12a + 8$
+        \item $16x^2 - 16x - 5$
+        \item $\displaystyle \frac{1}{4}x^2 + \frac{2}{3}xy + \frac{4}{9}y^2$
+        \item $9x^6 - 16y^4$
+        \item $8m^3 - 60m^2n + 150mn^2 - 125n^3$
+        \item $x^4 - 2x^2 - 35$
+        \item $a^2 + 4b^2 + 9c^2 + 4ab - 6ac - 12bc$
+        \item $25x^4y^2 + 20x^2yz^3 + 4z^6$
+        \item $8x^4 + 14x^2 - 15$
+        \item $\displaystyle \frac{x^3}{27} + x^2y + 9xy^2 + 27y^3$
+        \item $4x^6 + 20x^3y + 25y^2$
+        \item $x^2 + 2xy + y^2 - 4$
+        \item $\displaystyle \frac{9}{16}x^2 - \frac{3}{4}xy + \frac{1}{4}y^2$
+        \item $4x^{2a} - 9y^{2b}$
+        \item $64m^6 - 240m^4n^3 + 300m^2n^6 - 125n^9$
+        \item $x^2 + 2xy + y^2 - z^2$
+        \item $9a^2 + 4b^2 + c^2 - 12ab + 6ac - 4bc$
+        \item $\displaystyle 8x^3 + 6x^2 + \frac{3}{2}x + \frac{1}{8}$
+        \item $25x^{2m+2} + 25x^{m+1} - 14$
+        \item $a^2b^4 - c^6$
+        \item $4x^4 + 12x^3 + 5x^2 - 6x + 1$
+        \item $\displaystyle \frac{1}{9}a^6 + 4a^3b^2 + 36b^4$
+        \item $\displaystyle \frac{8}{125}m^6 - \frac{6}{25}m^4n + \frac{3}{10}m^2n^2 - \frac{1}{8}n^3$
+        \item $\displaystyle \frac{9}{49}x^8 - \frac{4}{25}y^6$
+        \item $16x^6y^2 + 16x^3y - 45$
+        \item $4x^4 + 9y^2 + 16z^2 - 12x^2y + 16x^2z - 24yz$
+        \item $8x^3 + 27y^3$
+        \item $x^{3a} + 3x^{2a}y^{b+1} + 3x^a y^{2b+2} + y^{3b+3}$
+        \item $x^4 + x^2 + 1$
+        \item $9a^{2x} - 30a^x b^y + 25b^{2y}$
+        \item $\displaystyle \frac{1}{16}a^4 + a^2 - 12$
+        \item $25x^4 - 30x^3 - 11x^2 + 12x + 4$
+    \end{enumerate}
+    
+\newpage
+
+\item Soluciones de las reducciones:
+    \begin{enumerate}[label=\arabic*), itemsep=1em]
+        \item $x + 12y$
+        \item $5a + 3b$
+        \item $4x - 2$
+        \item $m$
+        \item $7x^2y + 4xy^2$
+        \item $3a^2b$
+        \item $m^3 + 2m^2$
+        \item $9p + 8q$
+        \item $x - 2$
+        \item $-x^2 - 6x + 5$
+        \item $x + 7y$
+        \item $\displaystyle \frac{19}{12}a^2b + \frac{1}{6}ab^2$
+        \item $-23m^2n$
+        \item $9a - 6b + 3c$
+        \item $-4x - 5y$
+        \item $x^2 + 9x - 16$
+        \item $6x^3y^2 + x^2y^3$
+        \item $\displaystyle \frac{7x}{12}$
+        \item $a^2$
+        \item $-6x^2 + 21x + 15$
+        \item $9a - 11b$
+        \item $\displaystyle \frac{4x - 19}{6}$
+        \item $-12x - 6$
+        \item $\displaystyle \frac{1}{2}x^{a+1}$
+        \item $5x^2 - 5xy + 2y^2$
+        \item $\displaystyle \frac{5}{4}m^2n - \frac{5}{6}mn^2$
+        \item $3x^2y - 2xy^2 + 1$
+        \item $2x - 9y$
+        \item $-24ab$
+        \item $2x + 4y$
+        \item $\displaystyle \frac{7}{4}x - \frac{1}{3}y$
+        \item $4a^2 - 3abc + 2$
+        \item $-108x^2y - 16y^3$
+        \item $10x^4 - 14x^3 - 30x^2$
+        \item $\displaystyle \frac{7a - 18b}{12}$
+        \item $7m - 7n$
+        \item $16$
+        \item $7x^{m+1}$
+        \item $4ab - 4ac$
+        \item $x^2 - 9xy$
+    \end{enumerate}
+
+    \item Soluciones de las ecuaciones de primer y segundo grado:
+    \begin{enumerate}[label=\arabic*), itemsep=1em]
+        \item $x = 5$
+        \item $x = 3$
+        \item $x = 6$
+        \item $x = 8$
+        \item $x = 7$
+        \item $x_1 = 4, \quad x_2 = 0$
+        \item $x_1 = -3, \quad x_2 = -\frac{1}{2}$
+        \item $x_1 = 3, \quad x_2 = -3$
+        \item $x_1 = 3, \quad x_2 = 2$
+        \item $x_1 = 5, \quad x_2 = -1$
+        \item $x = 8$
+        \item $x_1 = 5, \quad x_2 = 2$
+        \item $x = -1$
+        \item $x_1 = 4, \quad x_2 = -4$
+        \item $x = -9$
+        \item $x = -3$
+        \item $x = 5$
+        \item $x_1 = 3, \quad x_2 = -\frac{1}{2}$
+        \item $x = 6$
+        \item $x_1 = 4, \quad x_2 = -3$
+        \item $x = 5$
+        \item $x_1 = 5, \quad x_2 = 3$
+        \item $x = 4$
+        \item $x_1 = 3, \quad x_2 = -3$
+        \item $x = 5$
+        \item $x_1 = 2, \quad x_2 = -4$
+        \item $x = 6$
+        \item $x = \frac{3}{2}$
+        \item $x = 3$
+        \item $x_1 = \frac{3}{2}, \quad x_2 = -4$
+        \item $x = -5$
+        \item $x_1 = 5, \quad x_2 = -5$
+        \item $x = 7$
+        \item $x_1 = 4, \quad x_2 = -5$
+        \item $x = 12$
+        \item $x_1 = 4, \quad x_2 = 0$
+        \item $x = 6$
+        \item $x = 5$
+        \item $x = 11$
+        \item $x_1 = \frac{2}{3}, \quad x_2 = -1$
+    \end{enumerate}
+\end{enumerate}
+\end{soluciones}
+
+\end{document}
