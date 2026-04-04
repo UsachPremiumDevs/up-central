@@ -1,0 +1,384 @@
+\documentclass[letterpaper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+
+\geometry{letterpaper, margin=2.5cm}
+
+% Ajuste para la altura del encabezado
+\setlength{\headheight}{15pt}
+
+\newcommand{\logoinstitucion}{./images/logo_up.png}
+\newcommand{\logoup}{./images/logo_up.png}
+\newcommand{\logousach}{./images/logo_usach.png}
+
+% Información para la portada y encabezados
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\curso}{Nivelación Matemática} % Añadido para que compile correctamente el encabezado
+\newcommand{\guiasnumero}{Guía 1 - Ayudantías de Nivelación Matemática}
+\newcommand{\guiascontenido}{
+    \begin{center}
+    \begin{tabular}{r@{\quad$\Rightarrow$\quad}l}
+        & \textit{Productos notables} \\[6pt]
+        & \textit{Reconozca el producto notable y expréselo en su forma original} \\[6pt]
+        & \textit{Reducción y simplificación de expresiones} \\[6pt]
+        & \textit{Ecuaciones de primer y segundo grado} \\
+    \end{tabular}
+    \end{center}
+}
+\newcommand{\preparadopor}{Usach premium.}
+\newcommand{\fecha}{1er. Semestre de 2026}
+\newcommand{\transparencia}{0.05}
+\newcommand{\webinstitucion}{www.usachpremium.cl}
+\newcommand{\instagraminstitucion}{https://www.instagram.com/usach.premium}
+\definecolor{enlace}{HTML}{0000FF}
+
+% Configuración de hyperref para solo cambiar el color del texto
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% Definición de los encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\href{http://\webinstitucion}{\institucion}}
+\fancyhead[C]{\curso}
+\fancyhead[R]{\guiasnumero}
+\fancyfoot[L]{\preparadopor}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Estilo para páginas sin encabezado (como la portada)
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% Imagen de fondo con transparencia
+\newcommand{\PonerLogoFondo}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){\transparent{\transparencia}\includegraphics[width=0.7\textwidth]{\logoinstitucion}}
+        }
+    }
+}
+
+% Estilo de página para el formulario con frase en el pie
+\fancypagestyle{formularioconfrase}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.5pt}
+  \fancyfoot[C]{\textbf{``La matemática es la reina de las ciencias''} \par \textit{- Carl Friedrich Gauss}}
+}
+
+% Sección de introducción
+\newenvironment{Introduccion}
+{\section*{Introducción}
+\PonerLogoFondo}
+{}
+
+% Sección de ejercicios
+\newenvironment{ejercicios}
+{\section*{Ejercicios}
+\PonerLogoFondo}
+{}
+
+% Sección de soluciones
+\newenvironment{soluciones}
+{\section*{Soluciones (Desarrollo paso a paso)}
+\PonerLogoFondo}
+{}
+
+\begin{document}
+
+% Portada
+\begin{titlepage}
+\thispagestyle{plain}
+
+\AddToShipoutPicture*{%
+  \put(54, 700){\includegraphics[width=2cm]{\logoup}}      % Logo superior izquierdo
+  \put(420, 706){\includegraphics[width=5cm]{\logousach}}  % Logo superior derecho
+}
+
+\centering
+\vspace*{\stretch{2}}
+
+{\LARGE \textbf{\institucion} \par}
+\vspace{0.5cm}
+{\huge \textbf{\curso} \par}
+\vspace{0.8cm}
+{\Large \textbf{\guiasnumero} \par}
+\vspace{0.8cm}
+{\large \textit{\guiascontenido} \par}
+
+\vspace*{\stretch{2.5}}
+
+\noindent\begin{minipage}{\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushleft}
+{\large \preparadopor \par}
+{\large \fecha \par}
+\end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushright}
+{\large Web: \href{http://\webinstitucion}{\webinstitucion} \par}
+{\large Instagram: \href{\instagraminstitucion}{@usach.premium}}
+\end{flushright}
+\end{minipage}
+\end{minipage}
+
+\vspace*{\stretch{0.5}}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{Introduccion}
+    Como equipo de Usach Premium, hemos preparado esta guía porque sabemos que antes de sumergirnos en los límites y derivadas del Cálculo, es vital asegurar nuestros cimientos. A menudo, el mayor desafío en la universidad no es comprender los conceptos nuevos, sino la manipulación algebraica necesaria para llegar al resultado final.
+
+    Repasar ecuaciones, productos notables y simplificación te dará la agilidad necesaria para no quedarte atascado en el álgebra básica. Dominar estos atajos matemáticos evitará que errores de signos o multiplicaciones arruinen el desarrollo de problemas largos, ahorrándote un tiempo valioso en tus Peps.
+    
+    \vspace{0.5cm}
+    \textbf{Resumen de Productos Notables Clave:}
+    Para dominar esta guía, es fundamental que memorices y reconozcas las siguientes estructuras, tanto para expandirlas como para factorizarlas:
+    
+    \begin{itemize}[itemsep=0.2cm]
+        \item \textbf{Cuadrado de Binomio:} $(a \pm b)^2 = a^2 \pm 2ab + b^2$
+        \item \textbf{Suma por su Diferencia:} $(a + b)(a - b) = a^2 - b^2$
+        \item \textbf{Multiplicación de Binomios con término común:} $(x + a)(x + b) = x^2 + (a+b)x + ab$
+        \item \textbf{Cubo de Binomio:} $(a \pm b)^3 = a^3 \pm 3a^2b + 3ab^2 \pm b^3$
+        \item \textbf{Suma de Cubos:} $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$
+        \item \textbf{Diferencia de Cubos:} $a^3 - b^3 = (a - b)(a^2 + ab + b^2)$
+    \end{itemize}
+
+    \vspace{0.8cm} 
+    \vfill
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{./images/USACHIN.png}
+    \end{center}
+\end{Introduccion}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Sección de ejercicios
+\begin{ejercicios}
+\begin{enumerate}[label=\Roman*.]
+
+    % Sección 1: Productos Notables
+    \item \textbf{Resuelva los siguientes productos notables:}
+     \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]
+        \item $\displaystyle (x + 5)^2$
+        \item $\displaystyle (2a - 3)(2a + 3)$
+        \item $\displaystyle \left(\frac{1}{2}x + \frac{2}{3}y\right)^2$
+        \item $\displaystyle (a + 2b - 3c)^2$
+        \item $\displaystyle (x^a + y^{b+1})^3$
+     \end{enumerate}
+     
+    \vspace{0.8cm}
+
+    % Sección 2: Reducción
+    \item \textbf{Reduzca al máximo posible las siguientes expresiones:} 
+    \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]
+        \item $\displaystyle 3x + 5y - 2x + 7y$
+        \item $\displaystyle 4(2a - 3b) - 3(a - 5b)$
+        \item $\displaystyle (2x - 3)(x + 4) - (x - 2)^2$
+        \item $\displaystyle 2x - [3x - (5x - 2)]$
+        \item $\displaystyle \frac{12a^3b - 8a^2b^2}{4ab} - 2a(a - b)$
+    \end{enumerate}
+
+    \vspace{0.8cm}
+
+    % Sección 3: Factorización inversa
+    \item \textbf{Reconozca el producto notable y expréselo en su forma original (factorizada):}
+    \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]
+        \item $\displaystyle x^2 + 14x + 49$
+        \item $\displaystyle 25x^2 - 20x + 4$
+        \item $\displaystyle x^3 + 8$
+        \item $\displaystyle a^3 - 27$
+        \item $\displaystyle 8m^3 + 125$
+    \end{enumerate}
+
+    \vspace{0.8cm}
+
+    % Sección 4: Ecuaciones
+    \item \textbf{Resuelve las siguientes ecuaciones de primer y segundo grado:}
+    \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep= 0.4cm]        
+        \item $\displaystyle 3x - 5 = 10$
+        \item $\displaystyle x^2 - 9=0$     
+        \item $\displaystyle x^2 - 5x + 6 = 0$
+        \item $\displaystyle \frac{2x - 1}{3} = x - 2$
+        \item $\displaystyle 2x^2 + 7x + 3 = 0$        
+    \end{enumerate}
+    
+\end{enumerate}
+\end{ejercicios}
+
+\newpage
+
+% Sección de soluciones
+\begin{soluciones}
+\begin{enumerate}[label=\Roman*., itemsep=1.5em]
+    
+    \item \textbf{Soluciones a los productos notables:}
+    \begin{enumerate}[label=\arabic*), itemsep=1em]
+        \item Cuadrado de binomio:
+        \begin{align*}
+            (x + 5)^2 &= (x)^2 + 2(x)(5) + (5)^2 \\
+            &= x^2 + 10x + 25
+        \end{align*}
+        
+        \item Suma por su diferencia:
+        \begin{align*}
+            (2a - 3)(2a + 3) &= (2a)^2 - (3)^2 \\
+            &= 4a^2 - 9
+        \end{align*}
+        
+        \item Cuadrado de binomio con fracciones:
+        \begin{align*}
+            \left(\frac{1}{2}x + \frac{2}{3}y\right)^2 &= \left(\frac{1}{2}x\right)^2 + 2\left(\frac{1}{2}x\right)\left(\frac{2}{3}y\right) + \left(\frac{2}{3}y\right)^2 \\
+            &= \frac{1}{4}x^2 + \frac{2}{3}xy + \frac{4}{9}y^2
+        \end{align*}
+        
+        \item Cuadrado de trinomio $(a+b+c)^2 = a^2+b^2+c^2+2ab+2ac+2bc$:
+        \begin{align*}
+            (a + 2b - 3c)^2 &= a^2 + (2b)^2 + (-3c)^2 + 2(a)(2b) + 2(a)(-3c) + 2(2b)(-3c) \\
+            &= a^2 + 4b^2 + 9c^2 + 4ab - 6ac - 12bc
+        \end{align*}
+        
+        \item Cubo de binomio con exponentes literales:
+        \begin{align*}
+            (x^a + y^{b+1})^3 &= (x^a)^3 + 3(x^a)^2(y^{b+1}) + 3(x^a)(y^{b+1})^2 + (y^{b+1})^3 \\
+            &= x^{3a} + 3x^{2a}y^{b+1} + 3x^a y^{2b+2} + y^{3b+3}
+        \end{align*}
+    \end{enumerate}
+    
+    \item \textbf{Soluciones de las reducciones:}
+    \begin{enumerate}[label=\arabic*), itemsep=1em]
+        \item Agrupando términos semejantes:
+        \begin{align*}
+            3x + 5y - 2x + 7y &= (3x - 2x) + (5y + 7y) \\
+            &= x + 12y
+        \end{align*}
+        
+        \item Distribuyendo y reduciendo:
+        \begin{align*}
+            4(2a - 3b) - 3(a - 5b) &= 8a - 12b - 3a + 15b \\
+            &= (8a - 3a) + (-12b + 15b) \\
+            &= 5a + 3b
+        \end{align*}
+        
+        \item Resolviendo productos y restando:
+        \begin{align*}
+            (2x - 3)(x + 4) - (x - 2)^2 &= (2x^2 + 8x - 3x - 12) - (x^2 - 4x + 4) \\
+            &= (2x^2 + 5x - 12) - x^2 + 4x - 4 \\
+            &= x^2 + 9x - 16
+        \end{align*}
+        
+        \item Resolviendo corchetes y paréntesis desde adentro hacia afuera:
+        \begin{align*}
+            2x - [3x - (5x - 2)] &= 2x - [3x - 5x + 2] \\
+            &= 2x - [-2x + 2] \\
+            &= 2x + 2x - 2 \\
+            &= 4x - 2
+        \end{align*}
+        
+        \item Simplificando fracción y distribuyendo:
+        \begin{align*}
+            \frac{12a^3b - 8a^2b^2}{4ab} - 2a(a - b) &= \left( \frac{12a^3b}{4ab} - \frac{8a^2b^2}{4ab} \right) - (2a^2 - 2ab) \\
+            &= (3a^2 - 2ab) - 2a^2 + 2ab \\
+            &= a^2
+        \end{align*}
+    \end{enumerate}
+
+    \newpage
+
+    \item \textbf{Soluciones de factorización (primitiva):}
+    \begin{enumerate}[label=\arabic*), itemsep=1em]
+        \item Trinomio cuadrado perfecto. Buscamos raíces de los extremos: $\sqrt{x^2}=x$, $\sqrt{49}=7$. Comprobamos el centro: $2(x)(7) = 14x$.
+        \begin{align*}
+            x^2 + 14x + 49 &= (x + 7)^2
+        \end{align*}
+        
+        \item Trinomio cuadrado perfecto. Raíces: $\sqrt{25x^2}=5x$, $\sqrt{4}=2$. Comprobamos centro: $2(5x)(2) = 20x$. Como el centro es negativo:
+        \begin{align*}
+            25x^2 - 20x + 4 &= (5x - 2)^2
+        \end{align*}
+        
+        \item Suma de cubos perfectos. Raíces cúbicas: $\sqrt[3]{x^3}=x$, $\sqrt[3]{8}=2$. Forma $(A+B)(A^2-AB+B^2)$:
+        \begin{align*}
+            x^3 + 8 &= (x + 2)(x^2 - 2x + 4)
+        \end{align*}
+        
+        \item Diferencia de cubos perfectos. Raíces cúbicas: $\sqrt[3]{a^3}=a$, $\sqrt[3]{27}=3$. Forma $(A-B)(A^2+AB+B^2)$:
+        \begin{align*}
+            a^3 - 27 &= (a - 3)(a^2 + 3a + 9)
+        \end{align*}
+        
+        \item Suma de cubos perfectos. Raíces cúbicas: $\sqrt[3]{8m^3}=2m$, $\sqrt[3]{125}=5$.
+        \begin{align*}
+            8m^3 + 125 &= (2m + 5)((2m)^2 - (2m)(5) + (5)^2) \\
+            &= (2m + 5)(4m^2 - 10m + 25)
+        \end{align*}
+    \end{enumerate}
+
+    \item \textbf{Soluciones de ecuaciones:}
+    \begin{enumerate}[label=\arabic*), itemsep=1em]
+        \item Ecuación de primer grado:
+        \begin{align*}
+            3x - 5 &= 10 \\
+            3x &= 15 \\
+            x &= \frac{15}{3} \implies x = 5
+        \end{align*}
+        
+        \item Ecuación cuadrática incompleta. Despejamos o factorizamos por suma por diferencia:
+        \begin{align*}
+            x^2 - 9 &= 0 \\
+            (x - 3)(x + 3) &= 0 \\
+            x_1 = 3&, \quad x_2 = -3
+        \end{align*}
+        
+        \item Ecuación cuadrática. Buscamos dos números que sumados den -5 y multiplicados den 6 (son -3 y -2):
+        \begin{align*}
+            x^2 - 5x + 6 &= 0 \\
+            (x - 3)(x - 2) &= 0 \\
+            x_1 = 3&, \quad x_2 = 2
+        \end{align*}
+        
+        \item Ecuación de primer grado con fracciones. Multiplicamos por 3:
+        \begin{align*}
+            \frac{2x - 1}{3} &= x - 2 \\
+            2x - 1 &= 3(x - 2) \\
+            2x - 1 &= 3x - 6 \\
+            -1 + 6 &= 3x - 2x \\
+            5 &= x
+        \end{align*}
+        
+        \item Ecuación cuadrática (factorización por aspa simple o separación del término central):
+        \begin{align*}
+            2x^2 + 7x + 3 &= 0 \\
+            2x^2 + 6x + x + 3 &= 0 \\
+            2x(x + 3) + 1(x + 3) &= 0 \\
+            (2x + 1)(x + 3) &= 0 \\
+            x_1 = -\frac{1}{2}&, \quad x_2 = -3
+        \end{align*}
+    \end{enumerate}
+    
+\end{enumerate}
+\end{soluciones}
+
+\end{document}
