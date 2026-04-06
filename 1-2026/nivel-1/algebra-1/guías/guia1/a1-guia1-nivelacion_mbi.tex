@@ -1,0 +1,372 @@
+\documentclass[letterpaper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{parskip}
+
+\geometry{letterpaper, margin=2.5cm}
+
+% Ajuste para la altura del encabezado
+\setlength{\headheight}{15pt}
+
+\newcommand{\logoinstitucion}{./images/logo_up.png}
+\newcommand{\logoup}{./images/logo_up.png}
+\newcommand{\logousach}{./images/logo_usach.png}
+
+% Información para la portada y encabezados
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\curso}{Álgebra I}
+\newcommand{\guiasnumero}{Guía de Ejercicios }
+\newcommand{\guiascontenido}{Preparación pre-algebra}
+\newcommand{\preparadopor}{Usach Premium}
+\newcommand{\fecha}{1er. Semestre de 2026}
+\newcommand{\transparencia}{0.05}
+\newcommand{\webinstitucion}{www.usachpremium.cl}
+\newcommand{\instagraminstitucion}{https://www.instagram.com/usach.premium}
+\definecolor{enlace}{HTML}{0000FF}
+
+% Configuración de hyperref para solo cambiar el color del texto
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% Definición de los encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\href{http://\webinstitucion}{\institucion}}
+\fancyhead[C]{\curso}
+\fancyhead[R]{\guiasnumero}
+\fancyfoot[L]{\preparadopor}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Estilo para páginas sin encabezado (como la portada)
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% Imagen de fondo con transparencia
+\newcommand{\PonerLogoFondo}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){\transparent{\transparencia}\includegraphics[width=0.7\textwidth]{\logoinstitucion}}
+        }
+    }
+}
+
+% Estilo de página para el formulario con frase en el pie
+\fancypagestyle{formularioconfrase}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.5pt}
+  \fancyfoot[C]{\textbf{``La matemática es la reina de las ciencias''} \par \textit{- Carl Friedrich Gauss}}
+}
+
+% Sección de introducción
+\newenvironment{Introduccion}
+{\section*{Introducción}
+\PonerLogoFondo}
+{}
+
+% Sección de ejercicios
+\newenvironment{ejercicios}
+{\section*{Ejercicios}
+\PonerLogoFondo}
+{}
+
+% Sección de soluciones
+\newenvironment{soluciones}
+{\section*{Soluciones}
+\PonerLogoFondo}
+{}
+
+\begin{document}
+
+% Portada
+\begin{titlepage}
+\thispagestyle{plain}
+
+\AddToShipoutPicture*{%
+  \put(54, 700){\includegraphics[width=2cm]{\logoup}}      % Logo superior izquierdo
+  \put(420, 706){\includegraphics[width=5cm]{\logousach}}  % Logo superior derecho
+}
+
+\centering
+% Aumentamos el primer 'stretch' para empujar todo hacia abajo
+\vspace*{\stretch{2}}
+
+{\LARGE \textbf{\institucion} \par}
+\vspace{0.5cm}
+{\huge \textbf{\curso} \par}
+\vspace{0.8cm}
+{\Large \textbf{\guiasnumero} \par}
+\vspace{0.8cm}
+{\large \textit{\guiascontenido} \par}
+
+% Reducimos el 'stretch' del medio para mantener una buena proporción
+\vspace*{\stretch{2.5}}
+
+\noindent\begin{minipage}{\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushleft}
+{\large \preparadopor \par}
+{\large \fecha \par}
+\end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushright}
+{\large Web: \href{http://\webinstitucion}{\webinstitucion} \par}
+{\large Instagram: \href{\instagraminstitucion}{@usach.premium}}
+\end{flushright}
+\end{minipage}
+\end{minipage}
+
+% Aumentamos el 'stretch' final para que no quede tan pegado abajo
+\vspace*{\stretch{0.5}}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{Introduccion}
+    Como equipo de Usach Premium, hemos preparado esta guía porque sabemos que antes de adentrarnos en los grandes temas del Álgebra, es fundamental tener dominados los bloques más básicos del lenguaje matemático. A menudo, los errores en cursos universitarios no vienen de no entender la teoría, sino de tropezar con la aritmética al medio de un desarrollo largo.
+
+    Repasar potencias, raíces y fracciones te dará la solidez necesaria para enfrentar los ejercicios sin que los cálculos intermedios se conviertan en un obstáculo. Dominar estas herramientas te permitirá concentrarte en lo importante: el razonamiento algebraico, sin perder tiempo ni puntos por errores mecánicos en tus Peps.
+
+    \vspace{0.8cm}
+    \vfill
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{./images/USACHIN.png}
+    \end{center}
+\end{Introduccion}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Sección de ejercicios
+\begin{ejercicios}
+
+%primera seccion de ejercicios
+\begin{enumerate}[label=\arabic*., itemsep=1em]
+    \item Utilizando las propiedades de potencias resuelva los siguientes ejercicios:
+        \begin{enumerate}[label=\alph*), itemsep=2em] %Enumeracion de      ejercicios primera sección
+            \item $\frac{3^{4} \cdot 3^{5}}{3^{7}}$
+            \item $(2^{-3})^{2} \cdot 2^{8}$
+            \item $5^{4} \cdot 2^{4} \cdot  10^{-2}$
+            \item $(\frac{2}{3})^{-3} \cdot (\frac{4}{9})^{2}$
+             \item $\frac{12^{3} \cdot 18^{2}}{6^{4} \cdot 2^{3}}$$\frac{(x^{2} y^{3})^{4}}{x^{5} y^{10}}$
+             \item $\frac{(x^{2} y^{3})^{4}}{x^{5} y^{10}}$
+             \item $\frac{7^{x+2} \cdot 7^{x-1}}{7^{2x}}$
+             \item $\frac{25^{n+1} \cdot 5^{n-1}}{125^{n}}$
+             \item $\frac{3^{n+2} - 3^{n}}{3^{n-1}}$
+             \item $\frac{4^{x+1} + 4^{x}}{8^{x} \cdot 2^{2-x}}$
+             \item $\frac{(-2)^{5}\cdot2^{-3}}{(-2)^{2}}$
+            \item $(\frac{3}{5})^{-2}\cdot(\frac{25}{9})^{-1}$
+            \item $\frac{15^{4}\cdot6^{2}}{10^{3}\cdot9^{2}}$
+            \item $(0.5)^{-3}\cdot4^{2}\cdot2^{-5}$
+            \item $[\frac{(x^{3})^{-2}\cdot x^{8}}{x^{-1}}]^{3}$
+            \item $\frac{a^{2x-1}\cdot a^{3-x}}{a^{x+2}}$
+            \item $\frac{2^{n+4}-2^{n+2}}{2^{n+2}}$
+            \item $\frac{9^{x+1}-3^{2x}}{3^{2x-1}}$
+            \item $\frac{16^{x}\cdot8^{1-x}}{4^{x+1}}$
+            \item $\frac{(ab)^{n+1}\cdot(\frac{a}{b})^{n}}{a^{2n}\cdot b}$           
+        \end{enumerate}
+        
+    %Segunda sección de ejercicios 
+    \item Resuelva las siguiente igualdad de potencias:
+        \begin{enumerate}[label=\alph*),itemsep=2em]
+            \item $2^{x+3} = 2^{5}$
+            \item $3^{2x-1} = 27$
+            \item $5^{x} = \frac{1}{125}$
+            \item $4^{x+1} \cdot 2^{x-1} = 32$
+            \item $\frac{9^{x}}{3^{x+2}} = 81$
+            \item $\left(\frac{2}{3}\right)^{x-1} = \frac{27}{8}$
+            \item $\sqrt{7^{x+1}} = 49$
+            \item $25^{x-2} = 125^{x+1}$
+            \item $3^{x} + 3^{x+1} + 3^{x+2} = 39$
+            \item $8^{x} \cdot 16^{2x-1} = \left(\frac{1}{32}\right)^{-x}$
+            \item Simplifique $A$ tal que $a^b = b^a$ \\
+            $A = \sqrt[2ab^{-a}]{(a^{-b})^{-a^{-b}} * (b^{-a})^{-b^{-a}}}$            
+        \end{enumerate}
+
+%Hacemos salto de pagina para la seccion 3 de ejercicios
+\newpage
+%Tercera sección de ejercicios
+    \item Encuentre el valor numérico utilizando propiedades de potencias:
+        \begin{enumerate}[label= \alph*), itemsep=2em]
+            \item $\sqrt{128}$
+            \item $3\sqrt{20} - 2\sqrt{45} + \sqrt{5}$
+            \item $\sqrt{2} \cdot \sqrt[3]{2}$
+            \item $\frac{\sqrt[4]{32}}{\sqrt[4]{2}}$
+            \item $(\sqrt[3]{3})^6$
+            \item $\sqrt{\sqrt[3]{64}}$
+            \item $\sqrt[3]{162}$
+            \item $\frac{10}{\sqrt{5}}$
+            \item $\sqrt{18} + \sqrt{50} - \sqrt{2}$
+            \item $\sqrt{2} \cdot \sqrt{8} \cdot \sqrt{16}$
+            \item $\sqrt{2 \sqrt{2 \sqrt{2}}}$            
+            \item $\frac{3}{\sqrt{5} - \sqrt{2}}$
+            \item $\sqrt{75} - \sqrt{12} + \sqrt{147}$
+            \item $\sqrt[3]{x^2} \cdot \sqrt[4]{x^3} \cdot \sqrt[6]{x}$
+            \item $\frac{\sqrt{a^3b} \cdot \sqrt[3]{ab^2}}{\sqrt[6]{a^5b^4}}$
+            \item $(\sqrt{3} + \sqrt{2})^2 - (\sqrt{3} - \sqrt{2})^2$
+            \item $\frac{1}{\sqrt{2} + \sqrt{3} + \sqrt{5}}$
+            \item $\sqrt{10 - 2\sqrt{21}}$
+            \item $\sqrt[n]{ \frac{20^n}{4^n + 2^{2n}} }$
+        \end{enumerate}
+
+\newpage
+    % Cuarta sección de ejercicios.
+    \item \textbf{Pon en práctica lo aprendido:} utilizando las propiedades de las fracciones, resuelve los siguientes ejercicios.
+        \begin{enumerate}[label= \alph*), itemsep=2em]
+            \item $\frac{5}{9} + \frac{1}{9}$
+            \item $\frac{3}{4} - \frac{1}{8}$
+            \item $\frac{2}{5} \cdot \frac{15}{4}$
+            \item $\frac{7}{3} \div \frac{14}{9}$
+            \item $\frac{1}{2} + \frac{1}{3} - \frac{1}{6}$
+            \item $2 - \frac{3}{5}$
+            \item $\frac{1}{2} + \frac{1}{4} \cdot \frac{2}{3}$
+            \item $\left( \frac{4}{5} - \frac{1}{2} \right) \cdot \frac{10}{3}$
+            \item $\left( 1 + \frac{1}{3} \right) \div \frac{8}{9}$
+            \item $\frac{3}{2} - \left( \frac{1}{4} + \frac{5}{8} \right)$
+            \item $0,5 + \frac{3}{4} - \frac{1}{8}$
+            \item $0,\overline{3} \cdot \frac{6}{5}$
+            \item $\left( \frac{2}{3} \right)^2 - \frac{5}{18}$
+            \item $\dfrac{1 - \frac{1}{4}}{3}$
+            \item $\dfrac{\frac{1}{2} + \frac{1}{3}}{\frac{5}{6} - \frac{1}{2}}$
+            \item $\frac{11}{6} - \frac{5}{12}$
+            \item $\frac{4}{15} \cdot \frac{5}{2} \cdot \frac{3}{2}$
+            \item $4 \div \frac{8}{3} - \frac{1}{2}$
+            \item $\frac{7}{6} - \left( \frac{1}{3} + \frac{1}{2} \right)$
+            \item $1,2 - \frac{4}{5}$
+            \item $0,\overline{1} + \frac{8}{9}$
+            \item $\left( 2 - \frac{1}{4} \right) \div \frac{7}{8}$
+            \item $\dfrac{1}{1 + \frac{1}{4}}$
+            \item $\left( \frac{1}{3} \right)^2 + \frac{2}{9}$
+            \item $\dfrac{\frac{2}{5} \cdot \frac{10}{3}}{\frac{1}{2} + \frac{1}{6}}$
+        \end{enumerate}
+\end{enumerate}
+\end{ejercicios}
+
+\newpage
+
+% Sección de soluciones
+\begin{soluciones}
+    %Solucion de primera sección de ejercicios.
+    \begin{enumerate}
+        \item Solución parcial de potencias.
+        \begin{enumerate}[label=\alph*), itemsep=2em]
+            \item $3^{2} = 9$
+            \item $2^{2} = 4$
+            \item $10^{2} = 100$
+            \item $\frac{2^{2}}{3} = \frac{4}{3}$
+            \item $2^{4} \cdot 3^{5} = 16 \cdot 243 = 3888$
+            \item $x^{3}y^{2}$
+            \item $7$
+            \item $5^{2} = 25$
+            \item $2 \cdot 3 = 6$
+            \item $2^{x-1}$ (o $\frac{2^{x}}{2}$)
+            \item $-2^{0} = -1$
+            \item $\frac{5}{9}$
+            \item $\frac{3^{2}}{2} = \frac{9}{2} = 4,5$
+            \item $2^{2} = 4$
+            \item $x^{9}$
+            \item $a^{2x}$
+            \item $\frac{3}{2}$
+            \item $24 \cdot 3 = 72$
+            \item $2^{x+1}$
+            \item $b^{n-2}$
+        \end{enumerate}
+    %Solucion de la segunda seccion de ejercicios.
+    \newpage
+    
+    \item Solución parcial de las igualdades:
+        \begin{enumerate}[label=\alph*), itemsep=2em]
+            \item $x = 2$
+            \item $x = 2$
+            \item $x = -3$
+            \item $x = \frac{4}{3}$
+            \item $x = 6$
+            \item $x = -2$
+            \item $x = 3$
+            \item $x = -7$
+            \item $x = 1$
+            \item $x = \frac{4}{3}$
+            \item $A = a \cdot b$          
+        \end{enumerate}
+
+    \newpage
+    
+    %Tercera solucion
+    \item Solución parcial de raices:
+        \begin{enumerate}[label=\alph*),
+        itemsep=2em]
+            \item $8\sqrt{2}$
+            \item $\sqrt{5}$
+            \item $\sqrt[6]{32}$ (o $2^{5/6}$)
+            \item $2$
+            \item $9$
+            \item $2$
+            \item $3\sqrt[3]{6}$
+            \item $2\sqrt{5}$
+            \item $7\sqrt{2}$
+            \item $8$
+            \item $\sqrt[8]{128}$ (o $2^{7/8}$)
+            \item $\sqrt{5} + \sqrt{2}$
+            \item $10\sqrt{3}$
+            \item $x \sqrt[12]{x^7}$ (o $x^{19/12}$)
+            \item $a \sqrt[3]{b}$
+            \item $4\sqrt{6}$
+            \item $\frac{2\sqrt{3} + 3\sqrt{2} - \sqrt{30}}{12}$
+            \item $\sqrt{7} - \sqrt{3}$
+            \item $\frac{5}{2^{1/n}}$ (o $\sqrt[n]{\frac{20^n}{2 \cdot 4^n}}$
+        \end{enumerate}
+\newpage
+
+%Solución cuarta seccion de ejercicios.
+    \item Solución parcial:
+        \begin{enumerate}[label=\alph*), itemsep = 2em]
+            \item $\frac{2}{3}$
+            \item $\frac{5}{8}$
+            \item $\frac{3}{2}$
+            \item $\frac{3}{2}$
+            \item $\frac{2}{3}$
+            \item $\frac{7}{5}$
+            \item $\frac{2}{3}$
+            \item $1$
+            \item $\frac{3}{2}$
+            \item $\frac{5}{8}$
+            \item $\frac{9}{8}$
+            \item $\frac{2}{5}$
+            \item $\frac{1}{6}$
+            \item $\frac{1}{4}$
+            \item $\frac{5}{2}$
+            \item $\frac{17}{12}$
+            \item $1$
+            \item $1$
+            \item $\frac{1}{3}$
+            \item $\frac{2}{5}$
+            \item $1$
+            \item $2$
+            \item $\frac{4}{5}$
+            \item $\frac{1}{3}$
+            \item $2$
+        \end{enumerate}
+    \end{enumerate}
+\end{soluciones}
+\end{document}
