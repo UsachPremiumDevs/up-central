@@ -1,0 +1,410 @@
+% ============================================================
+%  PLANTILLA GUÍAS INSTITUCIONALES — USACH PREMIUM
+%  Fusiona el estilo formal de guia1 (portada + marca de agua)
+%  con el estilo premium de guia3 (colores + tcolorbox + multicol).
+%
+%  INSTRUCCIONES RÁPIDAS:
+%  1. Edita el bloque "INFORMACIÓN DE LA GUÍA" (líneas ~65-85).
+%  2. Rellena \listacontenidos con los temas de tu guía.
+%  3. Agrega ejercicios en los entornos indicados.
+%  4. Compila con: pdflatex guia-institucional.tex (2 veces).
+%
+%  ESTRUCTURA DEL DOCUMENTO:
+%    Portada → Introducción → Kit de Propiedades → Ejercicios → Solucionario
+% ============================================================
+
+\documentclass[letterpaper, 12pt]{article}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\tcbuselibrary{skins}
+
+% ============================================================
+% GEOMETRÍA
+% ============================================================
+\geometry{letterpaper, margin=1.5cm, top=3cm, bottom=2.5cm, headheight=2cm}
+
+% ============================================================
+% COLORES INSTITUCIONALES
+% ============================================================
+\definecolor{celesteSuave}{HTML}{F0F7FF}
+\definecolor{azulFuerte}{HTML}{1A5276}
+\definecolor{turquesaUsach}{HTML}{33CCCC}
+\definecolor{enlace}{HTML}{1A5276}
+
+% ============================================================
+% RUTAS DE IMÁGENES  ← ajusta si tu carpeta de imágenes es distinta
+% ============================================================
+\newcommand{\logoup}{./images/logo_up.png}
+\newcommand{\logousach}{./images/logo_usach.png}
+\newcommand{\logofondo}{./images/logo_up.png}
+
+% ============================================================
+% INFORMACIÓN DE LA GUÍA  ← EDITA AQUÍ ANTES DE COMPILAR
+% ============================================================
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\curso}{Nombre del Curso}              % ej: Cálculo I
+\newcommand{\guiasnumero}{Guía N - Título}         % ej: Guía 1 - Trigonometría
+\newcommand{\semestre}{1er. Semestre de 2026}
+\newcommand{\preparadopor}{Usach Premium.}         % o el nombre del ayudante
+\newcommand{\webinstitucion}{www.usachpremium.cl}
+\newcommand{\instagraminstitucion}{https://www.instagram.com/usach.premium}
+\newcommand{\transparencia}{0.05}                  % opacidad marca de agua (0.0–1.0)
+\newcommand{\fraseportada}{"Por y para estudiantes"}
+
+% Lista de contenidos que aparece en la portada dentro del tcolorbox.
+% Agrega o quita \item según los temas de tu guía.
+\newcommand{\listacontenidos}{
+    \item[\color{azulFuerte}$\Rightarrow$] Contenido 1
+    \item[\color{azulFuerte}$\Rightarrow$] Contenido 2
+    \item[\color{azulFuerte}$\Rightarrow$] Contenido 3
+    \item[\color{azulFuerte}$\Rightarrow$] Contenido 4
+}
+
+% ============================================================
+% HYPERREF
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% ============================================================
+% ENCABEZADO Y PIE DE PÁGINA (páginas interiores)
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+    \includegraphics[height=1.2cm]{\logoup}%
+}
+\fancyhead[R]{%
+    \begin{minipage}[b]{0.42\textwidth}
+        \raggedleft
+        \fontsize{9pt}{11pt}\selectfont
+        \textbf{\color{azulFuerte}\institucion} \\
+        \curso\ — \guiasnumero \\
+        \textit{\color{gray}@usach.premium}
+    \end{minipage}\hspace{0.1cm}%
+    \includegraphics[height=1.2cm]{\logousach}%
+}
+\fancyfoot[L]{\fontsize{9pt}{11pt}\selectfont \textit{\fraseportada}}
+\fancyfoot[R]{\fontsize{9pt}{11pt}\selectfont Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Estilo portada: sin encabezado ni pie
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% ============================================================
+% MARCA DE AGUA (logo transparente al centro de cada página)
+% Llama a \MarcaAgua dentro de un entorno para activarla.
+% ============================================================
+\newcommand{\MarcaAgua}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){%
+                \transparent{\transparencia}%
+                \includegraphics[width=0.7\textwidth]{\logofondo}%
+            }
+        }
+    }
+}
+
+% ============================================================
+% CAJAS REUTILIZABLES
+% ============================================================
+
+% Caja de resumen / kit de propiedades
+% Uso: \begin{kitpropiedades}{Título de la caja} ... \end{kitpropiedades}
+\newenvironment{kitpropiedades}[1]{%
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte,
+        title=\textbf{#1}, fonttitle=\bfseries]
+}{%
+    \end{tcolorbox}
+}
+
+% Caja de desafío con sombra y título de color blanco sobre azul
+% Uso: \begin{desafiobox}{Título} ... \end{desafiobox}
+\newtcolorbox{desafiobox}[1]{
+    colback=white,
+    colframe=azulFuerte,
+    fonttitle=\bfseries,
+    coltitle=white,
+    title=#1,
+    arc=8pt,
+    boxrule=1.2pt,
+    enhanced,l
+    drop shadow={black!5}
+}
+
+% Caja de bloque de soluciones
+% Uso: \begin{solbox}{Título} ... \end{solbox}
+\newenvironment{solbox}[1]{%
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte,
+        title=\textbf{#1}, fonttitle=\bfseries]
+}{%
+    \end{tcolorbox}
+}
+
+% ============================================================
+% ENTORNOS DE SECCIÓN
+% Cada entorno activa la marca de agua en las páginas que lo contienen.
+% ============================================================
+
+\newenvironment{introduccion}{%
+    \section*{Introducción}%
+    \MarcaAgua
+}{}
+
+\newenvironment{ejercicios}{%
+    \MarcaAgua
+}{}
+
+\newenvironment{soluciones}{%
+    \newpage
+    \begin{center}
+        \begin{tcolorbox}[colback=azulFuerte, colframe=azulFuerte,
+            colupper=white, width=0.8\textwidth, center, arc=10pt]
+            \centering\Large\textbf{SOLUCIONARIO}
+        \end{tcolorbox}
+    \end{center}
+    \MarcaAgua
+    \small
+}{}
+
+% ============================================================
+\begin{document}
+\thispagestyle{plain}
+
+% ============================================================
+% PORTADA
+% ============================================================
+
+% Logos en la portada: UP arriba a la izquierda, USACH arriba a la derecha
+\AddToShipoutPicture*{%
+    \put(54, 700){\includegraphics[width=2cm]{\logoup}}
+    \put(420, 706){\includegraphics[width=5cm]{\logousach}}
+}
+
+\vspace*{0.5cm}
+
+\begin{center}
+    \color{azulFuerte}
+    {\huge \textbf{GUÍA DE EJERCICIOS}} \\[0.5cm]
+    {\Huge \textbf{\curso}} \\[0.3cm]
+    {\Large \guiasnumero} \\[1.5cm]
+
+    % Caja de contenidos
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte, arc=10pt,
+        width=0.85\textwidth, center, boxrule=1.5pt]
+        \centering
+        \vspace{0.2cm}
+        {\Large \textbf{Contenidos}}
+        \vspace{0.3cm}
+        \color{black}
+        \begin{itemize}[leftmargin=3cm]
+            \listacontenidos
+        \end{itemize}
+        \vspace{0.2cm}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\Large \textbf{\semestre}} \\[0.8cm]
+    {\large \textbf{\preparadopor}}
+\end{center}
+
+\vspace{2cm}
+
+% Pie de portada con links
+\begin{center}
+    {\color{azulFuerte}\hrule height 0.5pt}
+    \vspace{0.3cm}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Instagram:} \\
+        \small\href{\instagraminstitucion}{@usach.premium}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Web:} \\
+        \small\href{http://\webinstitucion}{\webinstitucion}
+    \end{minipage}
+\end{center}
+
+\pagenumbering{arabic}
+\newpage
+
+% ============================================================
+% INTRODUCCIÓN  (borra este bloque si no aplica)
+% ============================================================
+\begin{introduccion}
+    Texto introductorio. Explica el propósito de la guía, qué
+    conceptos se trabajan y por qué son importantes para el curso.
+
+    % Imagen opcional (descomenta y ajusta la ruta):
+    % \vspace{0.8cm}
+    % \begin{center}
+    %     \includegraphics[width=0.9\textwidth]{./images/IMAGEN.png}
+    % \end{center}
+\end{introduccion}
+
+\newpage
+
+% ============================================================
+% KIT DE PROPIEDADES  (borra este bloque si no aplica)
+% ============================================================
+\begin{kitpropiedades}{RESUMEN DE CLASES: LO QUE DEBES SABER}
+\begin{multicols}{2}
+    \textbf{1. Primera categoría}
+    \begin{itemize}[leftmargin=10pt]
+        \item Propiedad A
+        \item Propiedad B
+    \end{itemize}
+
+    \columnbreak
+
+    \textbf{2. Segunda categoría}
+    \begin{itemize}[leftmargin=10pt]
+        \item Propiedad C
+        \item Propiedad D
+    \end{itemize}
+\end{multicols}
+\vspace{-0.2cm}
+\begin{center}
+    \small \textbf{Tip Pro:} Escribe aquí un tip útil para los estudiantes.
+\end{center}
+\end{kitpropiedades}
+
+% ============================================================
+% EJERCICIOS
+% ============================================================
+\begin{ejercicios}
+
+% --- Sección con ejercicios cortos (4 columnas) ---
+\subsection*{I. Nombre de la Primera Sección}
+\begin{multicols}{4}
+\small
+\begin{enumerate}[label=\textbf{\arabic*.}, noitemsep, leftmargin=*]
+    \item Ejercicio corto 1
+    \item Ejercicio corto 2
+    \item Ejercicio corto 3
+    \item Ejercicio corto 4
+\end{enumerate}
+\end{multicols}
+
+\vspace{0.5cm}
+
+% --- Sección con ejercicios medianos (2 columnas) ---
+\subsection*{II. Nombre de la Segunda Sección}
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=5, leftmargin=*]
+    \item Ejercicio más largo 1
+    \item Ejercicio más largo 2
+\end{enumerate}
+\end{multicols}
+
+\vspace{0.5cm}
+
+% --- Sección con sub-ítems (1 columna) ---
+\subsection*{III. Nombre de la Tercera Sección}
+\begin{enumerate}[label=\arabic*., leftmargin=*, itemsep=0.4cm]
+    \item Enunciado principal con sub-partes:
+    \begin{enumerate}[label=\arabic*), leftmargin=*, itemsep=0.4cm]
+        \item $\displaystyle $ % Escribe la expresión aquí
+        \item $\displaystyle $
+    \end{enumerate}
+\end{enumerate}
+
+% --- DESAFÍO ESPECIAL (opcional, borra si no aplica) ---
+\vspace{0.7cm}
+\begin{desafiobox}{DESAFÍO: Título del Problema Aplicado}
+\small
+\textbf{Contexto:} Describe la situación real o el problema motivador.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dato 1:} descripción.
+    \item \textbf{Dato 2:} descripción.
+\end{itemize}
+
+\textbf{Pregunta:} ¿Qué se debe calcular o demostrar?
+
+% Diagrama TikZ opcional:
+% \begin{center}
+%   \begin{tikzpicture}[scale=1.2, thick]
+%     % ... tu diagrama aquí ...
+%   \end{tikzpicture}
+% \end{center}
+
+\hrule\vspace{2mm}
+\centering\footnotesize \textbf{Nota del Staff:} Mensaje motivacional.
+\end{desafiobox}
+
+\end{ejercicios}
+
+% ============================================================
+% SOLUCIONARIO
+% ============================================================
+\begin{soluciones}
+
+\begin{solbox}{I. Soluciones — Primera Sección}
+\begin{multicols}{5}
+\begin{enumerate}[label=\color{azulFuerte}\bfseries\arabic*., leftmargin=*, noitemsep]
+    \item $R_1$ \item $R_2$ \item $R_3$ \item $R_4$
+\end{enumerate}
+\end{multicols}
+\end{solbox}
+
+\begin{solbox}{II. Soluciones — Segunda Sección}
+\begin{multicols}{5}
+\begin{enumerate}[label=\color{azulFuerte}\bfseries\arabic*., leftmargin=*, noitemsep, start=5]
+    \item $R_5$ \item $R_6$
+\end{enumerate}
+\end{multicols}
+\end{solbox}
+
+\begin{solbox}{III. Soluciones — Tercera Sección}
+\begin{enumerate}[label=\arabic*., itemsep=1em]
+    \item
+    \begin{enumerate}[label=\arabic*), itemsep=0.5em]
+        \item Solución a
+        \item Solución b
+    \end{enumerate}
+\end{enumerate}
+\end{solbox}
+
+\vspace{0.8cm}
+\begin{center}
+    \small\textbf{Usach Premium} — ¡Nos vemos en la ayudantía! \\
+    \textit{"Por y para estudiantes."}
+\end{center}
+
+\end{soluciones}
+
+\end{document}
