@@ -1,42 +1,237 @@
-\documentclass[12pt]{article}
+\documentclass[letterpaper, 12pt]{article}
+
+% ============================================================
+% PAQUETES
+% ============================================================
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+\usepackage{amsmath, amssymb, amsfonts}
 \usepackage{geometry}
-\geometry{a4paper, margin=2.5cm}
+\usepackage{fancyhdr}
 \usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\tcbuselibrary{skins}
 
-\title{Guía de Nivelación N°2: Cálculo I \\ \large Comunidad Usach Premium}
-\author{Elaborado para Estudiantes}
-\date{\today}
+% ============================================================
+% GEOMETRÍA
+% ============================================================
+\geometry{letterpaper, margin=1.5cm, top=3cm, bottom=2.5cm, headheight=2cm}
 
+% ============================================================
+% NOTACIÓN ESPAÑOLA
+% ============================================================
+\let\sin\relax
+\DeclareMathOperator{\sin}{sen}
+
+% ============================================================
+% COLORES INSTITUCIONALES
+% ============================================================
+\definecolor{celesteSuave}{HTML}{F0F7FF}
+\definecolor{azulFuerte}{HTML}{1A5276}
+\definecolor{enlace}{HTML}{1A5276}
+
+% ============================================================
+% INFORMACIÓN DE LA GUÍA
+% ============================================================
+\newcommand{\logoup}{./images/logo_up.png}
+\newcommand{\logousach}{./images/logo_usach.png}
+\newcommand{\logofondo}{./images/logo_up.png}
+
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\curso}{Cálculo I}
+\newcommand{\guiasnumero}{Guía 2 - Nivelación}
+\newcommand{\semestre}{1er. Semestre de 2026}
+\newcommand{\preparadopor}{Byron Caices y Luis Vásquez}
+\newcommand{\webinstitucion}{www.usachpremium.cl}
+\newcommand{\instagraminstitucion}{https://www.instagram.com/usach.premium}
+\newcommand{\transparencia}{0.05}
+\newcommand{\fraseportada}{"Por y para estudiantes"}
+
+\newcommand{\listacontenidos}{
+    \item[\color{azulFuerte}$\Rightarrow$] Ecuaciones Lineales
+    \item[\color{azulFuerte}$\Rightarrow$] Ecuaciones de Segundo Grado
+    \item[\color{azulFuerte}$\Rightarrow$] Trigonometría Básica
+    \item[\color{azulFuerte}$\Rightarrow$] Desafíos
+}
+
+% ============================================================
+% HYPERREF
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% ============================================================
+% ENCABEZADO Y PIE DE PÁGINA
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+    \includegraphics[height=1.2cm]{\logoup}%
+}
+\fancyhead[R]{%
+    \begin{minipage}[b]{0.42\textwidth}
+        \raggedleft
+        \fontsize{9pt}{11pt}\selectfont
+        \textbf{\color{azulFuerte}\institucion} \\
+        \curso\ — \guiasnumero \\
+        \textit{\color{gray}@usach.premium}
+    \end{minipage}\hspace{0.1cm}%
+    \includegraphics[height=1.2cm]{\logousach}%
+}
+\fancyfoot[L]{\fontsize{9pt}{11pt}\selectfont \textit{\fraseportada}}
+\fancyfoot[R]{\fontsize{9pt}{11pt}\selectfont Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% ============================================================
+% MARCA DE AGUA
+% ============================================================
+\newcommand{\MarcaAgua}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){%
+                \transparent{\transparencia}%
+                \includegraphics[width=0.7\textwidth]{\logofondo}%
+            }
+        }
+    }
+}
+
+% ============================================================
+% CAJAS TCOLORBOX
+% ============================================================
+\newtcolorbox{desafiobox}[1]{
+    colback=white,
+    colframe=azulFuerte,
+    fonttitle=\bfseries,
+    coltitle=white,
+    title=#1,
+    arc=8pt,
+    boxrule=1.2pt,
+    enhanced,
+    drop shadow={black!5}
+}
+
+% ============================================================
 \begin{document}
+\thispagestyle{plain}
 
-\maketitle
+% ============================================================
+% PORTADA
+% ============================================================
+\AddToShipoutPicture*{%
+    \put(54, 700){\includegraphics[width=2cm]{\logoup}}
+    \put(420, 706){\includegraphics[width=5cm]{\logousach}}
+}
 
-\section*{Sección 1: Ecuaciones (Nivel Fácil - Medio)}
-Esta sección busca afianzar el despeje de incógnitas y la resolución de ecuaciones fundamentales, comenzando por las lineales y avanzando hacia las cuadráticas.
+\vspace*{0.5cm}
 
-\subsection*{Ecuaciones Lineales}
+\begin{center}
+    \color{azulFuerte}
+    {\huge \textbf{GUÍA DE EJERCICIOS}} \\[0.5cm]
+    {\Huge \textbf{\curso}} \\[0.3cm]
+    {\Large \guiasnumero} \\[1.5cm]
+
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte, arc=10pt,
+        width=0.85\textwidth, center, boxrule=1.5pt]
+        \centering
+        \vspace{0.2cm}
+        {\Large \textbf{Contenidos}}
+        \vspace{0.3cm}
+        \color{black}
+        \begin{itemize}[leftmargin=3cm]
+            \listacontenidos
+        \end{itemize}
+        \vspace{0.2cm}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\Large \textbf{\semestre}} \\[0.8cm]
+    {\large \textbf{\preparadopor}}
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+    {\color{azulFuerte}\hrule height 0.5pt}
+    \vspace{0.3cm}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Instagram:} \\
+        \small\href{\instagraminstitucion}{@usach.premium}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Web:} \\
+        \small\href{http://\webinstitucion}{\webinstitucion}
+    \end{minipage}
+\end{center}
+
+\pagenumbering{arabic}
+\newpage
+
+% ============================================================
+% EJERCICIOS
+% ============================================================
+\MarcaAgua
+
+% ============================================================
+% SECCIÓN 1: ECUACIONES
+% ============================================================
+\subsection*{Sección 1: Ecuaciones \normalfont\small(Nivel Fácil - Medio)}
+
+Esta sección busca afianzar el despeje de incógnitas y la resolución de
+ecuaciones fundamentales, comenzando por las lineales y avanzando hacia
+las cuadráticas.
+
+\vspace{0.4cm}
+
+\textbf{Ecuaciones Lineales.}
 Resuelve las siguientes ecuaciones lineales para $x$:
-\begin{enumerate}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=0.3cm]
     \item $2x - 5 = 11$
     \item $3(x - 2) = 12$
     \item $5x - 7 = 2x + 8$
     \item $4(2x - 1) - 3(x + 2) = 10$
-    \item $\frac{x}{2} + \frac{x}{3} = 5$
-    \item $\frac{2x - 1}{3} = \frac{x + 4}{2}$
+    \item $\displaystyle\frac{x}{2} + \frac{x}{3} = 5$
+    \item $\displaystyle\frac{2x - 1}{3} = \frac{x + 4}{2}$
     \item $0.5x - 1.2 = 3.8$
     \item $7x - (2x - 4) = 3(x + 5)$
-    \item $\frac{x - 2}{4} - \frac{x + 1}{3} = -1$
-    \item $x - \frac{2x - 3}{5} = 3$
+    \item $\displaystyle\frac{x - 2}{4} - \frac{x + 1}{3} = -1$
+    \item $\displaystyle x - \frac{2x - 3}{5} = 3$
 \end{enumerate}
+\end{multicols}
 
-\subsection*{Ecuaciones de Segundo Grado}
-Encuentra las soluciones de las siguientes ecuaciones de segundo grado (puedes usar factorización o la fórmula general):
-\begin{enumerate}[resume]
+\vspace{0.5cm}
+
+\textbf{Ecuaciones de Segundo Grado.}
+Encuentra las soluciones (puedes usar factorización o la fórmula general):
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=0.3cm, start=11]
     \item $x^2 - 9 = 0$
     \item $x^2 - 5x + 6 = 0$
     \item $x^2 + 7x + 10 = 0$
@@ -48,16 +243,26 @@ Encuentra las soluciones de las siguientes ecuaciones de segundo grado (puedes u
     \item $2x^2 + 7x - 4 = 0$
     \item $5x^2 - 3x - 2 = 0$
 \end{enumerate}
+\end{multicols}
 
-\section*{Sección 2: Trigonometría Básica (Nivel Fácil - Medio)}
-Aquí los estudiantes practicarán la manipulación de identidades elementales, el cálculo de razones y la aplicación básica en problemas de ángulos.
+\newpage
 
-\subsection*{Razones e Identidades Trigonométricas}
-\begin{enumerate}
-    \item En un triángulo rectángulo, si $\sin(\alpha) = \frac{3}{5}$, calcula $\cos(\alpha)$ y $\tan(\alpha)$.
-    \item Sabiendo que $\tan(\theta) = \frac{4}{3}$ y $\theta$ está en el primer cuadrante, halla $\sin(\theta)$.
+% ============================================================
+% SECCIÓN 2: TRIGONOMETRÍA
+% ============================================================
+\subsection*{Sección 2: Trigonometría Básica \normalfont\small(Nivel Fácil - Medio)}
+
+Aquí los estudiantes practicarán la manipulación de identidades elementales,
+el cálculo de razones y la aplicación básica en problemas de ángulos.
+
+\vspace{0.4cm}
+
+\textbf{Razones e Identidades Trigonométricas.}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=0.4cm, start=21]
+    \item En un triángulo rectángulo, si $\sin(\alpha) = \dfrac{3}{5}$, calcula $\cos(\alpha)$ y $\tan(\alpha)$.
+    \item Sabiendo que $\tan(\theta) = \dfrac{4}{3}$ y $\theta$ está en el primer cuadrante, halla $\sin(\theta)$.
     \item Simplifica la expresión usando la identidad fundamental: $\sin^2(x) + \cos^2(x) + \tan^2(x)$.
-    \item Demuestra la siguiente relación: $\frac{\sin(x)}{\cos(x)} + \frac{\cos(x)}{\sin(x)} = \frac{1}{\sin(x)\cos(x)}$.
+    \item Demuestra la siguiente relación: $\dfrac{\sin(x)}{\cos(x)} + \dfrac{\cos(x)}{\sin(x)} = \dfrac{1}{\sin(x)\cos(x)}$.
     \item Simplifica al máximo: $(1 - \sin^2(x)) \cdot \sec^2(x)$.
     \item Calcula el valor numérico exacto de $\sin(30^\circ) + \cos(60^\circ)$.
     \item Si $\sec(\beta) = 2$, ¿cuál es el valor exacto de $\cos(\beta)$?
@@ -66,40 +271,71 @@ Aquí los estudiantes practicarán la manipulación de identidades elementales, 
     \item Escribe $\cot^2(x) - \csc^2(x)$ en su forma más simple (como un número entero).
 \end{enumerate}
 
-\subsection*{Elevación, Depresión y Suma de Ángulos}
-\begin{enumerate}[resume]
+\vspace{0.5cm}
+
+\textbf{Elevación, Depresión y Suma de Ángulos.}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=0.4cm, start=31]
     \item Calcula $\sin(75^\circ)$ utilizando la fórmula de suma de ángulos: $\sin(45^\circ + 30^\circ)$.
     \item Calcula $\cos(105^\circ)$ utilizando la fórmula de suma de ángulos: $\cos(60^\circ + 45^\circ)$.
-    \item Desarrolla y simplifica la expresión para $\sin\left(x + \frac{\pi}{2}\right)$.
-    \item Un árbol proyecta una sombra de 15 metros de largo cuando el ángulo de elevación del sol es de $45^\circ$. ¿Cuál es la altura del árbol?
+    \item Desarrolla y simplifica la expresión para $\sin\!\left(x + \dfrac{\pi}{2}\right)$.
+    \item Un árbol proyecta una sombra de 15 metros cuando el ángulo de elevación del sol es de $45^\circ$. ¿Cuál es la altura del árbol?
     \item Desde lo alto de un faro de 50 metros sobre el nivel del mar, se observa un barco con un ángulo de depresión de $30^\circ$. ¿A qué distancia horizontal de la base del faro está el barco?
-    \item Una escalera de 10 metros de longitud está apoyada contra una pared vertical, formando un ángulo de $60^\circ$ con el suelo horizontal. ¿A qué altura de la pared llega la parte superior de la escalera?
+    \item Una escalera de 10 metros de longitud está apoyada contra una pared vertical, formando un ángulo de $60^\circ$ con el suelo. ¿A qué altura de la pared llega la parte superior de la escalera?
     \item Utiliza la fórmula de suma de ángulos para demostrar que $\cos(2x) = \cos^2(x) - \sin^2(x)$.
     \item Calcula el valor exacto de $\tan(15^\circ)$ usando la diferencia de ángulos $\tan(45^\circ - 30^\circ)$.
-    \item Un volantín está sujeto por un hilo de 40 metros. Si el ángulo de elevación es de $60^\circ$, ¿a qué altura aproximada está el volantín? (Asume que el hilo está completamente tenso).
-    \item Desde la azotea de un edificio de 20 metros de altura, el ángulo de elevación hacia la cima de un edificio adyacente es de $45^\circ$ y el ángulo de depresión hacia su base es de $30^\circ$. ¿Cuál es la altura total del edificio adyacente?
+    \item Un volantín está sujeto por un hilo de 40 metros. Si el ángulo de elevación es de $60^\circ$, ¿a qué altura está el volantín? (Asume que el hilo está completamente tenso).
+    \item Desde la azotea de un edificio de 20 metros, el ángulo de elevación hacia la cima de un edificio adyacente es $45^\circ$ y el ángulo de depresión hacia su base es $30^\circ$. ¿Cuál es la altura total del edificio adyacente?
 \end{enumerate}
 
-\section*{Sección 3: Práctica para Taller (Nivel Desafío)}
-Estos ejercicios están pensados para el final de la tutoría o para que los estudiantes se pongan a prueba en grupos de cara a los controles formales.
+\newpage
 
-\subsection*{Desafíos N1 (Expresiones Algebraicas)}
-\begin{enumerate}
-    \item \textbf{Simplificación Racional Compleja:} Simplifica la siguiente expresión a su forma más irreductible: 
-    \[ \frac{x^4 - 16}{x^3 + 2x^2 + 4x + 8} \div \frac{x^2 - 4x + 4}{x^2 - 4} \]
-    \item \textbf{Factorización Avanzada:} Factoriza completamente la siguiente expresión, reconociendo sumas y diferencias de cubos: 
-    \[ x^6 - 64y^6 \]
-    \item \textbf{Fracciones Algebraicas:} Simplifica la siguiente expresión compuesta, indicando las restricciones de dominio si es necesario: 
-    \[ \frac{\frac{1}{x} - \frac{1}{x+h}}{h} \]
-\end{enumerate}
+% ============================================================
+% SECCIÓN 3: DESAFÍOS
+% ============================================================
+\subsection*{Sección 3: Práctica para Taller \normalfont\small(Nivel Desafío)}
 
-\subsection*{Desafíos N2 (Ecuaciones y Trigonometría)}
-\begin{enumerate}[resume]
-    \item \textbf{Ecuación Paramétrica:} Resuelve la siguiente ecuación lineal para la variable $x$, asumiendo que $a$ y $b$ son constantes reales positivas y $a \neq -b$: 
-    \[ a^2 x - b^2 = a^2 - b^2 x \]
-    \item \textbf{Identidad Trigonométrica Compleja:} Demuestra la siguiente identidad, utilizando las propiedades de ángulos dobles: 
-    \[ \frac{\sin(x) + \sin(2x)}{1 + \cos(x) + \cos(2x)} = \tan(x) \]
-    \item \textbf{Problema de Elevación de Múltiples Etapas:} Un topógrafo nota que el ángulo de elevación a la cima de una torre de transmisión es de $30^\circ$. Al avanzar 20 metros en línea recta hacia la torre, el ángulo de elevación cambia a $60^\circ$. ¿Cuál es la altura exacta de la torre? (Expresa tu resultado utilizando raíces cuadradas).
+Estos ejercicios están pensados para el final de la tutoría o para que los
+estudiantes se pongan a prueba en grupos de cara a los controles formales.
+
+\vspace{0.5cm}
+
+\begin{desafiobox}{DESAFÍOS N1 — Expresiones Algebraicas}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=0.5cm, start=41]
+    \item \textbf{Simplificación Racional Compleja:} Simplifica la siguiente expresión a su forma más irreductible:
+    \[
+        \frac{x^4 - 16}{x^3 + 2x^2 + 4x + 8} \div \frac{x^2 - 4x + 4}{x^2 - 4}
+    \]
+    \item \textbf{Factorización Avanzada:} Factoriza completamente la siguiente expresión, reconociendo sumas y diferencias de cubos:
+    \[
+        x^6 - 64y^6
+    \]
+    \item \textbf{Fracciones Algebraicas:} Simplifica la siguiente expresión compuesta, indicando las restricciones de dominio si es necesario:
+    \[
+        \frac{\dfrac{1}{x} - \dfrac{1}{x+h}}{h}
+    \]
 \end{enumerate}
+\end{desafiobox}
+
+\vspace{0.7cm}
+
+\begin{desafiobox}{DESAFÍOS N2 — Ecuaciones y Trigonometría}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=0.5cm, start=44]
+    \item \textbf{Ecuación Paramétrica:} Resuelve para $x$, asumiendo que $a$ y $b$ son constantes reales positivas con $a \neq -b$:
+    \[
+        a^2 x - b^2 = a^2 - b^2 x
+    \]
+    \item \textbf{Identidad Trigonométrica Compleja:} Demuestra la siguiente identidad utilizando las propiedades de ángulos dobles:
+    \[
+        \frac{\sin(x) + \sin(2x)}{1 + \cos(x) + \cos(2x)} = \tan(x)
+    \]
+    \item \textbf{Problema de Elevación de Múltiples Etapas:} Un topógrafo nota que el ángulo de elevación a la cima de una torre es de $30^\circ$. Al avanzar 20 metros hacia la torre, el ángulo de elevación cambia a $60^\circ$. ¿Cuál es la altura exacta de la torre? (Expresa el resultado usando raíces cuadradas).
+\end{enumerate}
+\end{desafiobox}
+
+\vspace{0.8cm}
+\begin{center}
+    \small\textbf{Usach Premium} — ¡Nos vemos en la ayudantía! \\
+    \textit{"Por y para estudiantes."}
+\end{center}
 
 \end{document}

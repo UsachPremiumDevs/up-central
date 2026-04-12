@@ -1,0 +1,819 @@
+\documentclass[letterpaper, 12pt]{article}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\usepackage{cancel}
+\tcbuselibrary{skins}
+
+% ============================================================
+% GEOMETRÍA
+% ============================================================
+\geometry{letterpaper, margin=1.5cm, top=3cm, bottom=2.5cm, headheight=2cm}
+
+% ============================================================
+% NOTACIÓN ESPAÑOLA
+% ============================================================
+\let\sin\relax
+\DeclareMathOperator{\sin}{sen}
+
+% ============================================================
+% COLORES INSTITUCIONALES
+% ============================================================
+\definecolor{celesteSuave}{HTML}{F0F7FF}
+\definecolor{azulFuerte}{HTML}{1A5276}
+\definecolor{enlace}{HTML}{1A5276}
+\definecolor{verdeOk}{HTML}{27AE60}
+\definecolor{rojoAlerta}{HTML}{C0392B}
+
+% ============================================================
+% INFORMACIÓN DE LA CLASE
+% ============================================================
+\newcommand{\logoup}{./images/logo_up.png}
+\newcommand{\logousach}{./images/logo_usach.png}
+\newcommand{\logofondo}{./images/logo_up.png}
+
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\curso}{Cálculo I}
+\newcommand{\guiasnumero}{Guía 2 — Clase en Vivo (Uso Docente)}
+\newcommand{\semestre}{1er. Semestre de 2026}
+\newcommand{\fraseportada}{"Por y para estudiantes"}
+
+% ============================================================
+% HYPERREF
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% ============================================================
+% ENCABEZADO Y PIE DE PÁGINA
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+    \includegraphics[height=1.2cm]{\logoup}%
+}
+\fancyhead[R]{%
+    \begin{minipage}[b]{0.50\textwidth}
+        \raggedleft
+        \fontsize{9pt}{11pt}\selectfont
+        \textbf{\color{azulFuerte}\institucion} \\
+        \curso\ — Clase en Vivo \\
+        \textit{\color{gray}Documento de uso docente}
+    \end{minipage}\hspace{0.1cm}%
+    \includegraphics[height=1.2cm]{\logousach}%
+}
+\fancyfoot[L]{\fontsize{9pt}{11pt}\selectfont \textit{\fraseportada}}
+\fancyfoot[R]{\fontsize{9pt}{11pt}\selectfont Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% ============================================================
+% MARCA DE AGUA
+% ============================================================
+\newcommand{\MarcaAgua}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){%
+                \transparent{0.05}%
+                \includegraphics[width=0.7\textwidth]{\logofondo}%
+            }
+        }
+    }
+}
+
+% ============================================================
+% CAJAS TCOLORBOX
+% ============================================================
+\newtcolorbox{materiabox}[1]{
+    colback=celesteSuave,
+    colframe=azulFuerte,
+    fonttitle=\bfseries,
+    coltitle=white,
+    title=#1,
+    arc=8pt,
+    boxrule=1.2pt,
+    enhanced,
+    drop shadow={black!5}
+}
+
+\newtcolorbox{solucionbox}[1]{
+    colback=white,
+    colframe=verdeOk,
+    fonttitle=\bfseries,
+    coltitle=white,
+    title=#1,
+    arc=6pt,
+    boxrule=1pt,
+    enhanced,
+    drop shadow={black!5}
+}
+
+\newtcolorbox{desafiobox}[1]{
+    colback=white,
+    colframe=azulFuerte,
+    fonttitle=\bfseries,
+    coltitle=white,
+    title=#1,
+    arc=8pt,
+    boxrule=1.2pt,
+    enhanced,
+    drop shadow={black!5}
+}
+
+% ============================================================
+\begin{document}
+\thispagestyle{plain}
+\MarcaAgua
+
+% ============================================================
+% PORTADA
+% ============================================================
+\AddToShipoutPicture*{%
+    \put(54, 700){\includegraphics[width=2cm]{\logoup}}
+    \put(420, 706){\includegraphics[width=5cm]{\logousach}}
+}
+
+\vspace*{0.5cm}
+
+\begin{center}
+    \color{azulFuerte}
+    {\huge \textbf{CLASE EN VIVO — EJERCICIOS}} \\[0.5cm]
+    {\Huge \textbf{\curso}} \\[0.3cm]
+    {\Large Guía 2 — Nivelación} \\[0.3cm]
+    {\large\color{rojoAlerta}\textbf{DOCUMENTO DE USO DOCENTE — NO ENTREGAR}}\\[1.2cm]
+
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte, arc=10pt,
+        width=0.85\textwidth, center, boxrule=1.5pt]
+        \centering
+        \vspace{0.2cm}
+        {\Large \textbf{Contenidos de la Clase}}
+        \vspace{0.3cm}
+        \color{black}
+        \begin{itemize}[leftmargin=3cm]
+            \item[\color{azulFuerte}$\Rightarrow$] Materia: Ecuaciones Lineales y Cuadráticas
+            \item[\color{azulFuerte}$\Rightarrow$] Materia: Razones Trigonométricas
+            \item[\color{azulFuerte}$\Rightarrow$] Ejercicios con Desarrollo Completo
+            \item[\color{azulFuerte}$\Rightarrow$] Desafíos N1 y N2 Resueltos
+        \end{itemize}
+        \vspace{0.2cm}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\Large \textbf{\semestre}} \\[0.5cm]
+    {\large \textbf{Byron Caices y Luis Vásquez}}
+\end{center}
+
+\pagenumbering{arabic}
+\newpage
+
+% ============================================================
+% MATERIA: ECUACIONES
+% ============================================================
+\section*{Resumen de Materia}
+
+\begin{materiabox}{ECUACIONES LINEALES}
+Una \textbf{ecuación lineal} es de la forma $ax + b = 0$, con $a \neq 0$.
+
+\textbf{Estrategia de resolución:}
+\begin{enumerate}[leftmargin=*, itemsep=0.15cm]
+    \item Eliminar paréntesis (propiedad distributiva).
+    \item Eliminar denominadores multiplicando por el MCM.
+    \item Agrupar términos con $x$ a un lado y constantes al otro.
+    \item Despejar $x$ dividiendo por el coeficiente.
+\end{enumerate}
+\end{materiabox}
+
+\vspace{0.4cm}
+
+\begin{materiabox}{ECUACIONES DE SEGUNDO GRADO}
+Forma general: $ax^2 + bx + c = 0$, con $a \neq 0$.
+
+\textbf{Métodos de resolución:}
+\begin{itemize}[leftmargin=*, itemsep=0.15cm]
+    \item \textbf{Factorización:} Buscar dos números que multiplicados den $c$ y sumados den $b$.
+    \item \textbf{Fórmula general:}
+    \[
+        x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    \]
+    \item \textbf{Discriminante} $\Delta = b^2 - 4ac$:
+    \begin{itemize}
+        \item $\Delta > 0$: dos soluciones reales distintas.
+        \item $\Delta = 0$: una solución real doble.
+        \item $\Delta < 0$: no hay soluciones reales.
+    \end{itemize}
+\end{itemize}
+\end{materiabox}
+
+\vspace{0.4cm}
+
+\begin{materiabox}{RAZONES TRIGONOMÉTRICAS}
+En un triángulo rectángulo con ángulo $\alpha$:
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=*, itemsep=0.15cm]
+    \item $\sin \alpha = \dfrac{\text{Cateto Opuesto}}{\text{Hipotenusa}}$
+    \item $\cos \alpha = \dfrac{\text{Cateto Adyacente}}{\text{Hipotenusa}}$
+    \item $\tan \alpha = \dfrac{\text{Cateto Opuesto}}{\text{Cateto Adyacente}}$
+    \item $\csc \alpha = \dfrac{1}{\sin \alpha}$
+    \item $\sec \alpha = \dfrac{1}{\cos \alpha}$
+    \item $\cot \alpha = \dfrac{1}{\tan \alpha}$
+\end{itemize}
+\end{multicols}
+
+\textbf{Identidades Fundamentales:}
+\begin{itemize}[leftmargin=*, itemsep=0.15cm]
+    \item \textbf{Pitagórica:} $\sin^2\alpha + \cos^2\alpha = 1$
+    \item \textbf{Derivada 1:} $1 + \tan^2\alpha = \sec^2\alpha$
+    \item \textbf{Derivada 2:} $1 + \cot^2\alpha = \csc^2\alpha$
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{Valores Notables:}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ & $\mathbf{30^\circ}$ & $\mathbf{45^\circ}$ & $\mathbf{60^\circ}$ & $\mathbf{90^\circ}$ \\ \hline
+$\sin$ & $1/2$ & $\sqrt{2}/2$ & $\sqrt{3}/2$ & $1$ \\ \hline
+$\cos$ & $\sqrt{3}/2$ & $\sqrt{2}/2$ & $1/2$ & $0$ \\ \hline
+$\tan$ & $\sqrt{3}/3$ & $1$ & $\sqrt{3}$ & $\infty$ \\ \hline
+\end{tabular}
+\end{center}
+\end{materiabox}
+
+\newpage
+
+% ============================================================
+% SECCIÓN 1: ECUACIONES LINEALES (5 ejercicios con desarrollo)
+% ============================================================
+\section*{Sección 1: Ecuaciones Lineales — Ejercicios con Desarrollo}
+
+% --- Ejercicio 1 ---
+\textbf{Ejercicio 1.} Resuelve: $3(x - 2) = 12$
+
+\begin{solucionbox}{Desarrollo}
+\begin{align*}
+    3(x - 2) &= 12 \\
+    3x - 6 &= 12 && \text{(Distributiva)} \\
+    3x &= 12 + 6 \\
+    3x &= 18 \\
+    x &= \frac{18}{3} \\[4pt]
+    &\boxed{x = 6}
+\end{align*}
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 2 ---
+\textbf{Ejercicio 2.} Resuelve: $4(2x - 1) - 3(x + 2) = 10$
+
+\begin{solucionbox}{Desarrollo}
+\begin{align*}
+    4(2x - 1) - 3(x + 2) &= 10 \\
+    8x - 4 - 3x - 6 &= 10 && \text{(Distributiva)} \\
+    5x - 10 &= 10 && \text{(Reducir términos semejantes)} \\
+    5x &= 20 \\
+    x &= \frac{20}{5} \\[4pt]
+    &\boxed{x = 4}
+\end{align*}
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 3 ---
+\textbf{Ejercicio 3.} Resuelve: $\displaystyle\frac{x}{2} + \frac{x}{3} = 5$
+
+\begin{solucionbox}{Desarrollo}
+El MCM de $2$ y $3$ es $6$. Multiplicamos toda la ecuación por $6$:
+\begin{align*}
+    \frac{x}{2} + \frac{x}{3} &= 5 \\[6pt]
+    6 \cdot \frac{x}{2} + 6 \cdot \frac{x}{3} &= 6 \cdot 5 \\[6pt]
+    3x + 2x &= 30 \\
+    5x &= 30 \\
+    x &= \frac{30}{5} \\[4pt]
+    &\boxed{x = 6}
+\end{align*}
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 4 ---
+\textbf{Ejercicio 4.} Resuelve: $\displaystyle\frac{2x - 1}{3} = \frac{x + 4}{2}$
+
+\begin{solucionbox}{Desarrollo}
+Multiplicamos cruzado (o por el MCM $= 6$):
+\begin{align*}
+    \frac{2x - 1}{3} &= \frac{x + 4}{2} \\[6pt]
+    2(2x - 1) &= 3(x + 4) && \text{(Multiplicación cruzada)} \\
+    4x - 2 &= 3x + 12 \\
+    4x - 3x &= 12 + 2 \\
+    x &= 14 \\[4pt]
+    &\boxed{x = 14}
+\end{align*}
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 5 ---
+\textbf{Ejercicio 5.} Resuelve: $\displaystyle\frac{x - 2}{4} - \frac{x + 1}{3} = -1$
+
+\begin{solucionbox}{Desarrollo}
+El MCM de $4$ y $3$ es $12$. Multiplicamos toda la ecuación por $12$:
+\begin{align*}
+    \frac{x - 2}{4} - \frac{x + 1}{3} &= -1 \\[6pt]
+    12 \cdot \frac{x-2}{4} - 12 \cdot \frac{x+1}{3} &= 12 \cdot (-1) \\[6pt]
+    3(x - 2) - 4(x + 1) &= -12 \\
+    3x - 6 - 4x - 4 &= -12 \\
+    -x - 10 &= -12 \\
+    -x &= -12 + 10 \\
+    -x &= -2 \\
+    x &= 2 \\[4pt]
+    &\boxed{x = 2}
+\end{align*}
+\end{solucionbox}
+
+\newpage
+
+% ============================================================
+% SECCIÓN 2: ECUACIONES DE SEGUNDO GRADO (5 ejercicios con desarrollo)
+% ============================================================
+\section*{Sección 2: Ecuaciones de Segundo Grado — Ejercicios con Desarrollo}
+
+% --- Ejercicio 6 ---
+\textbf{Ejercicio 6.} Resuelve: $x^2 - 9 = 0$
+
+\begin{solucionbox}{Desarrollo — Diferencia de Cuadrados}
+\begin{align*}
+    x^2 - 9 &= 0 \\
+    x^2 - 3^2 &= 0 && \text{(Diferencia de cuadrados: } a^2 - b^2 = (a-b)(a+b)\text{)} \\
+    (x - 3)(x + 3) &= 0
+\end{align*}
+Igualando cada factor a cero:
+\[
+    x - 3 = 0 \implies x = 3 \qquad \text{o} \qquad x + 3 = 0 \implies x = -3
+\]
+\[\boxed{x = 3 \quad \text{o} \quad x = -3}\]
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 7 ---
+\textbf{Ejercicio 7.} Resuelve: $x^2 - 5x + 6 = 0$
+
+\begin{solucionbox}{Desarrollo — Factorización}
+Buscamos dos números que multiplicados den $+6$ y sumados den $-5$: esos son $-2$ y $-3$.
+\begin{align*}
+    x^2 - 5x + 6 &= 0 \\
+    (x - 2)(x - 3) &= 0
+\end{align*}
+Igualando cada factor a cero:
+\[
+    x - 2 = 0 \implies x = 2 \qquad \text{o} \qquad x - 3 = 0 \implies x = 3
+\]
+\[\boxed{x = 2 \quad \text{o} \quad x = 3}\]
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 8 ---
+\textbf{Ejercicio 8.} Resuelve: $x^2 - 4x - 5 = 0$
+
+\begin{solucionbox}{Desarrollo — Factorización}
+Buscamos dos números que multiplicados den $-5$ y sumados den $-4$: esos son $-5$ y $+1$.
+\begin{align*}
+    x^2 - 4x - 5 &= 0 \\
+    (x - 5)(x + 1) &= 0
+\end{align*}
+Igualando cada factor a cero:
+\[
+    x - 5 = 0 \implies x = 5 \qquad \text{o} \qquad x + 1 = 0 \implies x = -1
+\]
+\[\boxed{x = 5 \quad \text{o} \quad x = -1}\]
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 9 ---
+\textbf{Ejercicio 9.} Resuelve: $3x^2 - 5x + 2 = 0$
+
+\begin{solucionbox}{Desarrollo — Fórmula General}
+Con $a = 3$, $b = -5$, $c = 2$:
+\begin{align*}
+    \Delta &= b^2 - 4ac = (-5)^2 - 4(3)(2) = 25 - 24 = 1 \\[6pt]
+    x &= \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{5 \pm \sqrt{1}}{6} = \frac{5 \pm 1}{6}
+\end{align*}
+\[
+    x_1 = \frac{5 + 1}{6} = \frac{6}{6} = 1 \qquad \text{y} \qquad x_2 = \frac{5 - 1}{6} = \frac{4}{6} = \frac{2}{3}
+\]
+\[\boxed{x = 1 \quad \text{o} \quad x = \frac{2}{3}}\]
+
+\textit{Verificación por factorización:} $3x^2 - 5x + 2 = (3x - 2)(x - 1) = 0$. \checkmark
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 10 ---
+\textbf{Ejercicio 10.} Resuelve: $2x^2 + 7x - 4 = 0$
+
+\begin{solucionbox}{Desarrollo — Fórmula General}
+Con $a = 2$, $b = 7$, $c = -4$:
+\begin{align*}
+    \Delta &= b^2 - 4ac = 7^2 - 4(2)(-4) = 49 + 32 = 81 \\[6pt]
+    x &= \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{-7 \pm \sqrt{81}}{4} = \frac{-7 \pm 9}{4}
+\end{align*}
+\[
+    x_1 = \frac{-7 + 9}{4} = \frac{2}{4} = \frac{1}{2} \qquad \text{y} \qquad x_2 = \frac{-7 - 9}{4} = \frac{-16}{4} = -4
+\]
+\[\boxed{x = \frac{1}{2} \quad \text{o} \quad x = -4}\]
+\end{solucionbox}
+
+\newpage
+
+% ============================================================
+% SECCIÓN 3: RAZONES E IDENTIDADES TRIGONOMÉTRICAS (5 ejercicios)
+% ============================================================
+\section*{Sección 3: Razones e Identidades Trigonométricas — Ejercicios con Desarrollo}
+
+\textit{Nota: en esta clase trabajamos solo con razones trigonométricas en el triángulo rectángulo, no con funciones trigonométricas.}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 11 ---
+\textbf{Ejercicio 11.} En un triángulo rectángulo, si $\sin(\alpha) = \dfrac{3}{5}$, calcula $\cos(\alpha)$ y $\tan(\alpha)$.
+
+\begin{solucionbox}{Desarrollo}
+Sabemos que $\sin(\alpha) = \dfrac{\text{opuesto}}{\text{hipotenusa}} = \dfrac{3}{5}$, por lo que:
+\begin{itemize}[leftmargin=*]
+    \item Cateto opuesto $= 3$, Hipotenusa $= 5$.
+\end{itemize}
+Usamos el Teorema de Pitágoras para el cateto adyacente:
+\begin{align*}
+    b^2 + 3^2 &= 5^2 \\
+    b^2 &= 25 - 9 = 16 \\
+    b &= 4
+\end{align*}
+Entonces:
+\[
+    \cos(\alpha) = \frac{\text{adyacente}}{\text{hipotenusa}} = \frac{4}{5} \qquad \text{y} \qquad \tan(\alpha) = \frac{\text{opuesto}}{\text{adyacente}} = \frac{3}{4}
+\]
+\[\boxed{\cos(\alpha) = \frac{4}{5}, \qquad \tan(\alpha) = \frac{3}{4}}\]
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 12 ---
+\textbf{Ejercicio 12.} Simplifica: $\sin^2(x) + \cos^2(x) + \tan^2(x)$
+
+\begin{solucionbox}{Desarrollo}
+Por la identidad pitagórica fundamental: $\sin^2(x) + \cos^2(x) = 1$.
+
+Sustituyendo:
+\begin{align*}
+    \sin^2(x) + \cos^2(x) + \tan^2(x) &= 1 + \tan^2(x)
+\end{align*}
+Aplicando la identidad derivada $1 + \tan^2(x) = \sec^2(x)$:
+\[\boxed{\sin^2(x) + \cos^2(x) + \tan^2(x) = \sec^2(x)}\]
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 13 ---
+\textbf{Ejercicio 13.} Simplifica: $(1 - \sin^2(x)) \cdot \sec^2(x)$
+
+\begin{solucionbox}{Desarrollo}
+Paso 1: Aplicamos la identidad pitagórica $\sin^2(x) + \cos^2(x) = 1$, de donde $1 - \sin^2(x) = \cos^2(x)$.
+
+Paso 2: Recordamos que $\sec(x) = \dfrac{1}{\cos(x)}$, por lo tanto $\sec^2(x) = \dfrac{1}{\cos^2(x)}$.
+
+\begin{align*}
+    (1 - \sin^2(x)) \cdot \sec^2(x) &= \cos^2(x) \cdot \frac{1}{\cos^2(x)} = 1
+\end{align*}
+\[\boxed{(1 - \sin^2(x)) \cdot \sec^2(x) = 1}\]
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 14 ---
+\textbf{Ejercicio 14.} Calcula el valor numérico exacto de $\sin(30^\circ) + \cos(60^\circ)$.
+
+\begin{solucionbox}{Desarrollo}
+Usando la tabla de valores notables:
+\[
+    \sin(30^\circ) = \frac{1}{2} \qquad \text{y} \qquad \cos(60^\circ) = \frac{1}{2}
+\]
+Sumando:
+\[
+    \sin(30^\circ) + \cos(60^\circ) = \frac{1}{2} + \frac{1}{2} = 1
+\]
+
+\textit{Observación: $30^\circ$ y $60^\circ$ son complementarios, y $\sin(\alpha) = \cos(90^\circ - \alpha)$.}
+
+\[\boxed{\sin(30^\circ) + \cos(60^\circ) = 1}\]
+\end{solucionbox}
+
+\vspace{0.4cm}
+
+% --- Ejercicio 15 ---
+\textbf{Ejercicio 15.} Simplifica: $\cos(x)(\sec(x) - \cos(x))$
+
+\begin{solucionbox}{Desarrollo}
+Distribuimos $\cos(x)$:
+\begin{align*}
+    \cos(x)\bigl(\sec(x) - \cos(x)\bigr) &= \cos(x) \cdot \sec(x) - \cos^2(x)
+\end{align*}
+Sabemos que $\cos(x) \cdot \sec(x) = \cos(x) \cdot \dfrac{1}{\cos(x)} = 1$. Luego:
+\begin{align*}
+    &= 1 - \cos^2(x)
+\end{align*}
+Aplicando la identidad pitagórica $1 - \cos^2(x) = \sin^2(x)$:
+\[\boxed{\cos(x)(\sec(x) - \cos(x)) = \sin^2(x)}\]
+\end{solucionbox}
+
+\newpage
+
+% ============================================================
+% SECCIÓN 4: DESAFÍOS N1 — EXPRESIONES ALGEBRAICAS (con desarrollo)
+% ============================================================
+\section*{Desafíos N1: Expresiones Algebraicas — Desarrollo Completo}
+
+\begin{desafiobox}{DESAFÍO 41 — Simplificación Racional Compleja}
+Simplifica la siguiente expresión a su forma más irreductible:
+\[
+    \frac{x^4 - 16}{x^3 + 2x^2 + 4x + 8} \div \frac{x^2 - 4x + 4}{x^2 - 4}
+\]
+\end{desafiobox}
+
+\begin{solucionbox}{Desarrollo Completo}
+
+\textbf{Paso 1: Factorizar cada polinomio.}
+
+\begin{itemize}[leftmargin=*, itemsep=0.3cm]
+    \item $x^4 - 16 = (x^2)^2 - 4^2 = (x^2 - 4)(x^2 + 4) = (x-2)(x+2)(x^2+4)$
+
+    \item $x^3 + 2x^2 + 4x + 8$: agrupamos
+    \[
+        = x^2(x + 2) + 4(x + 2) = (x^2 + 4)(x + 2)
+    \]
+
+    \item $x^2 - 4x + 4 = (x - 2)^2$
+
+    \item $x^2 - 4 = (x - 2)(x + 2)$
+\end{itemize}
+
+\textbf{Paso 2: Reescribir la división como multiplicación.}
+\[
+    \frac{x^4 - 16}{x^3 + 2x^2 + 4x + 8} \cdot \frac{x^2 - 4}{x^2 - 4x + 4}
+\]
+
+\textbf{Paso 3: Sustituir las factorizaciones.}
+\[
+    = \frac{(x-2)(x+2)(x^2+4)}{(x^2+4)(x+2)} \cdot \frac{(x-2)(x+2)}{(x-2)^2}
+\]
+
+\textbf{Paso 4: Cancelar factores comunes.}
+\[
+    = \frac{\cancel{(x-2)}\cancel{(x+2)}\cancel{(x^2+4)}}{\cancel{(x^2+4)}\cancel{(x+2)}} \cdot \frac{\cancel{(x-2)}(x+2)}{(x-2)^{\cancel{2}}}
+\]
+\[
+    = \frac{x + 2}{1} = x + 2
+\]
+
+\[\boxed{\frac{x^4 - 16}{x^3 + 2x^2 + 4x + 8} \div \frac{x^2 - 4x + 4}{x^2 - 4} = x + 2}\]
+
+\textit{Restricciones de dominio:} $x \neq 2$, $x \neq -2$.
+\end{solucionbox}
+
+\newpage
+
+\begin{desafiobox}{DESAFÍO 42 — Factorización Avanzada}
+Factoriza completamente:
+\[
+    x^6 - 64y^6
+\]
+\end{desafiobox}
+
+\begin{solucionbox}{Desarrollo Completo}
+
+\textbf{Paso 1: Reconocer como diferencia de cuadrados.}
+\[
+    x^6 - 64y^6 = (x^3)^2 - (8y^3)^2
+\]
+
+\textit{Nota:} $(2y)^6 = 64y^6$, y $(2y)^3 = 8y^3$.
+
+Aplicando $a^2 - b^2 = (a - b)(a + b)$:
+\[
+    = (x^3 - 8y^3)(x^3 + 8y^3)
+\]
+
+\textbf{Paso 2: Factorizar cada factor como suma/diferencia de cubos.}
+
+Recordamos:
+\begin{itemize}
+    \item $a^3 - b^3 = (a - b)(a^2 + ab + b^2)$
+    \item $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$
+\end{itemize}
+
+\textbf{Diferencia de cubos:} $x^3 - 8y^3 = x^3 - (2y)^3$
+\[
+    = (x - 2y)(x^2 + 2xy + 4y^2)
+\]
+
+\textbf{Suma de cubos:} $x^3 + 8y^3 = x^3 + (2y)^3$
+\[
+    = (x + 2y)(x^2 - 2xy + 4y^2)
+\]
+
+\textbf{Paso 3: Resultado final.}
+\[\boxed{x^6 - 64y^6 = (x - 2y)(x^2 + 2xy + 4y^2)(x + 2y)(x^2 - 2xy + 4y^2)}\]
+\end{solucionbox}
+
+\vspace{0.6cm}
+
+\begin{desafiobox}{DESAFÍO 43 — Fracciones Algebraicas}
+Simplifica la siguiente expresión compuesta, indicando restricciones de dominio:
+\[
+    \frac{\dfrac{1}{x} - \dfrac{1}{x+h}}{h}
+\]
+\end{desafiobox}
+
+\begin{solucionbox}{Desarrollo Completo}
+
+\textbf{Paso 1: Operar la resta de fracciones del numerador.}
+\[
+    \frac{1}{x} - \frac{1}{x+h} = \frac{(x+h) - x}{x(x+h)} = \frac{h}{x(x+h)}
+\]
+
+\textbf{Paso 2: Dividir por $h$.}
+\[
+    \frac{\dfrac{h}{x(x+h)}}{h} = \frac{h}{x(x+h)} \cdot \frac{1}{h} = \frac{\cancel{h}}{x(x+h) \cdot \cancel{h}} = \frac{1}{x(x+h)}
+\]
+
+\[\boxed{\frac{\dfrac{1}{x} - \dfrac{1}{x+h}}{h} = \frac{1}{x(x+h)}}\]
+
+\textit{Restricciones de dominio:} $x \neq 0$, \ $x \neq -h$, \ $h \neq 0$.
+
+\vspace{0.2cm}
+\textit{Observación:} Esta expresión es el \textbf{cuociente de diferencias} de $f(x) = \dfrac{1}{x}$, que es la base del concepto de derivada en Cálculo.
+\end{solucionbox}
+
+\newpage
+
+% ============================================================
+% SECCIÓN 5: DESAFÍOS N2 — ECUACIONES Y TRIGONOMETRÍA (con desarrollo)
+% ============================================================
+\section*{Desafíos N2: Ecuaciones y Trigonometría — Desarrollo Completo}
+
+\begin{desafiobox}{DESAFÍO 44 — Ecuación Paramétrica}
+Resuelve para $x$, con $a, b$ constantes reales positivas y $a \neq -b$:
+\[
+    a^2\,x - b^2 = a^2 - b^2\,x
+\]
+\end{desafiobox}
+
+\begin{solucionbox}{Desarrollo Completo}
+
+\textbf{Paso 1: Agrupar los términos con $x$ a un lado.}
+\begin{align*}
+    a^2\,x - b^2 &= a^2 - b^2\,x \\
+    a^2\,x + b^2\,x &= a^2 + b^2 && \text{(Sumamos } b^2 x \text{ y } b^2 \text{ a ambos lados)}
+\end{align*}
+
+\textbf{Paso 2: Factorizar $x$.}
+\begin{align*}
+    x(a^2 + b^2) &= a^2 + b^2
+\end{align*}
+
+\textbf{Paso 3: Despejar $x$.}
+
+Como $a$ y $b$ son reales positivos, $a^2 + b^2 > 0$, luego podemos dividir:
+\[
+    x = \frac{a^2 + b^2}{a^2 + b^2} = 1
+\]
+
+\[\boxed{x = 1}\]
+
+\textit{Nota: la condición $a \neq -b$ garantiza que $a + b \neq 0$, pero la clave aquí es que $a^2 + b^2 > 0$ para todo $a, b$ positivos, lo que siempre permite dividir.}
+\end{solucionbox}
+
+\vspace{0.6cm}
+
+\begin{desafiobox}{DESAFÍO 45 — Identidad Trigonométrica Compleja}
+Demuestra:
+\[
+    \frac{\sin(x) + \sin(2x)}{1 + \cos(x) + \cos(2x)} = \tan(x)
+\]
+\end{desafiobox}
+
+\begin{solucionbox}{Desarrollo Completo}
+
+\textbf{Paso 1: Reescribir usando identidades de ángulo doble.}
+
+Recordamos:
+\begin{itemize}
+    \item $\sin(2x) = 2\sin(x)\cos(x)$
+    \item $\cos(2x) = 2\cos^2(x) - 1$
+\end{itemize}
+
+\textbf{Paso 2: Trabajar el numerador.}
+\begin{align*}
+    \sin(x) + \sin(2x) &= \sin(x) + 2\sin(x)\cos(x) \\
+    &= \sin(x)\bigl(1 + 2\cos(x)\bigr)
+\end{align*}
+
+\textbf{Paso 3: Trabajar el denominador.}
+\begin{align*}
+    1 + \cos(x) + \cos(2x) &= 1 + \cos(x) + 2\cos^2(x) - 1 \\
+    &= \cos(x) + 2\cos^2(x) \\
+    &= \cos(x)\bigl(1 + 2\cos(x)\bigr)
+\end{align*}
+
+\textbf{Paso 4: Dividir.}
+\[
+    \frac{\sin(x)\cancel{\bigl(1 + 2\cos(x)\bigr)}}{\cos(x)\cancel{\bigl(1 + 2\cos(x)\bigr)}} = \frac{\sin(x)}{\cos(x)} = \tan(x)
+\]
+
+\[\boxed{\frac{\sin(x) + \sin(2x)}{1 + \cos(x) + \cos(2x)} = \tan(x) \qquad \blacksquare}\]
+\end{solucionbox}
+
+\newpage
+
+\begin{desafiobox}{DESAFÍO 46 — Problema de Elevación de Múltiples Etapas}
+Un topógrafo nota que el ángulo de elevación a la cima de una torre es de $30^\circ$. Al avanzar 20 metros hacia la torre, el ángulo de elevación cambia a $60^\circ$. ¿Cuál es la altura exacta de la torre?
+\end{desafiobox}
+
+\begin{solucionbox}{Desarrollo Completo}
+
+\textbf{Paso 1: Definir variables.}
+
+Sea $h$ la altura de la torre y $d$ la distancia horizontal desde el \textbf{segundo punto} de observación hasta la base de la torre.
+
+\textbf{Paso 2: Plantear ecuaciones con las razones trigonométricas.}
+
+\textit{Desde el segundo punto} (más cercano), el ángulo es $60^\circ$:
+\[
+    \tan(60^\circ) = \frac{h}{d} \implies h = d\sqrt{3} \qquad \cdots\ (1)
+\]
+
+\textit{Desde el primer punto} (20 m más lejos), el ángulo es $30^\circ$:
+\[
+    \tan(30^\circ) = \frac{h}{d + 20} \implies h = \frac{d + 20}{\sqrt{3}} \qquad \cdots\ (2)
+\]
+
+\textbf{Paso 3: Igualar las expresiones de $h$.}
+\begin{align*}
+    d\sqrt{3} &= \frac{d + 20}{\sqrt{3}}
+\end{align*}
+Multiplicamos ambos lados por $\sqrt{3}$:
+\begin{align*}
+    3d &= d + 20 \\
+    2d &= 20 \\
+    d &= 10 \text{ m}
+\end{align*}
+
+\textbf{Paso 4: Obtener la altura.}
+\[
+    h = d\sqrt{3} = 10\sqrt{3} \text{ m}
+\]
+
+\[\boxed{h = 10\sqrt{3} \approx 17{,}32 \text{ metros}}\]
+\end{solucionbox}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\color{azulFuerte}\hrule height 0.5pt}
+    \vspace{0.5cm}
+    \small\textbf{Usach Premium} — Documento de uso docente para clase en vivo. \\[0.2cm]
+    \textit{\fraseportada}
+\end{center}
+
+\end{document}

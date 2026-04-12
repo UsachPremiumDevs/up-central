@@ -83,6 +83,57 @@ Toda carpeta `ayudantia-{N}/` debe contener al menos:
 
 ---
 
+## Template institucional
+
+La carpeta `template/` en la raíz del repo contiene la plantilla oficial de guías de Usach Premium.
+**Siempre que se cree una guía nueva, hay que partir desde acá.**
+
+```
+template/
+├── guia-institucional.tex   ← plantilla compilable lista para usar
+├── ESTILOS.md               ← documentación completa del sistema de estilos
+└── images/
+    ├── logo_up.png
+    └── logo_usach.png
+```
+
+### Estilos que incluye
+
+| Elemento | Descripción |
+|---|---|
+| Portada | Logos UP + USACH, título en azul, `tcolorbox` de contenidos, pie con links |
+| Encabezado | Logo UP a la izquierda, info institucional + logo USACH a la derecha |
+| Pie de página | Frase motivacional a la izquierda, número de página a la derecha |
+| Marca de agua | Logo UP con transparencia al centro de cada página interior |
+| Colores | `azulFuerte` #1A5276, `celesteSuave` #F0F7FF, `turquesaUsach` #33CCCC |
+| Secciones | `\subsection*` libre; cajas `kitpropiedades`, `desafiobox`, `solbox` |
+| Solucionario | Banner azul + bloques `solbox` con columnas compactas |
+
+### Cómo usar el template para una guía nueva
+
+1. Copia la carpeta `template/` completa al directorio de la nueva guía:
+   ```
+   cp -r template/ 1-2026/nivel-1/calculo-1/guías/guiaN/
+   mv guiaN/guia-institucional.tex guiaN/{nombre-guia}.tex
+   ```
+2. Edita solo el bloque **INFORMACIÓN DE LA GUÍA** al inicio del `.tex`:
+   ```latex
+   \newcommand{\curso}{Cálculo I}
+   \newcommand{\guiasnumero}{Guía N - Título}
+   \newcommand{\preparadopor}{Nombre Ayudante}
+   % ...
+   \newcommand{\listacontenidos}{
+       \item[\color{azulFuerte}$\Rightarrow$] Tema 1
+       ...
+   }
+   ```
+3. Rellena los ejercicios y el solucionario.
+4. Compila con `pdflatex` dos veces.
+
+> Ver `template/ESTILOS.md` para la documentación completa de todos los comandos, cajas y convenciones de columnas.
+
+---
+
 ## Cómo agregar contenido nuevo
 
 ### Nueva guía
