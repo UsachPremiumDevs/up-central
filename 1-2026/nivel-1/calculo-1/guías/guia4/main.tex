@@ -1,0 +1,414 @@
+% ============================================================
+%  GUÍA 4 — TRIGONOMETRÍA APLICADA
+%  Basada en la plantilla institucional Usach Premium
+% ============================================================
+
+\documentclass[letterpaper, 12pt]{article}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\usepackage{tikz}
+\usetikzlibrary{patterns, shadows.blur, fadings, calc, arrows.meta, decorations.pathreplacing}
+\usepackage{array}
+\usepackage{colortbl}
+\tcbuselibrary{skins, shadows.blur}
+
+% ============================================================
+% GEOMETRÍA
+% ============================================================
+\geometry{letterpaper, margin=1.5cm, top=3cm, bottom=2.5cm, headheight=2cm}
+
+% ============================================================
+% COLORES INSTITUCIONALES
+% ============================================================
+\definecolor{celesteSuave}{HTML}{F0F7FF}
+\definecolor{azulFuerte}{HTML}{1A5276}
+\definecolor{turquesaUsach}{HTML}{33CCCC}
+\definecolor{enlace}{HTML}{1A5276}
+% Colores adicionales usados en figuras
+\definecolor{azulMedio}{HTML}{2980B9}
+\definecolor{marronMadera}{HTML}{935116}
+\definecolor{verdePro}{HTML}{1E8449}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\newcommand{\logoup}{./logo_up.png}
+\newcommand{\logousach}{./logo_usach.png}
+\newcommand{\logofondo}{./logo_up.png}
+
+% ============================================================
+% INFORMACIÓN DE LA GUÍA
+% ============================================================
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\curso}{Cálculo I}
+\newcommand{\guiasnumero}{Guía 4 - Trigonometría Aplicada}
+\newcommand{\semestre}{1er. Semestre de 2026}
+\newcommand{\preparadopor}{Martina Copia — Usach Premium.}
+\newcommand{\webinstitucion}{www.usachpremium.cl}
+\newcommand{\instagraminstitucion}{https://www.instagram.com/usach.premium}
+\newcommand{\transparencia}{0.05}
+\newcommand{\fraseportada}{"Por y para estudiantes"}
+
+\newcommand{\listacontenidos}{
+    \item[\color{azulFuerte}$\Rightarrow$] Razones trigonométricas
+    \item[\color{azulFuerte}$\Rightarrow$] Identidades de suma y resta
+    \item[\color{azulFuerte}$\Rightarrow$] Tabla de valores notables
+    \item[\color{azulFuerte}$\Rightarrow$] Identidades trigonométricas
+}
+
+% ============================================================
+% HYPERREF
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% ============================================================
+% ENCABEZADO Y PIE DE PÁGINA
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+    \includegraphics[height=1.2cm]{\logoup}%
+}
+\fancyhead[R]{%
+    \begin{minipage}[b]{0.42\textwidth}
+        \raggedleft
+        \fontsize{9pt}{11pt}\selectfont
+        \textbf{\color{azulFuerte}\institucion} \\
+        \curso\ — \guiasnumero \\
+        \textit{\color{gray}@usach.premium}
+    \end{minipage}\hspace{0.1cm}%
+    \includegraphics[height=1.2cm]{\logousach}%
+}
+\fancyfoot[L]{\fontsize{9pt}{11pt}\selectfont \textit{\fraseportada}}
+\fancyfoot[R]{\fontsize{9pt}{11pt}\selectfont Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% ============================================================
+% MARCA DE AGUA
+% ============================================================
+\newcommand{\MarcaAgua}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){%
+                \transparent{\transparencia}%
+                \includegraphics[width=0.7\textwidth]{\logofondo}%
+            }
+        }
+    }
+}
+
+% ============================================================
+% CAJAS REUTILIZABLES
+% ============================================================
+
+\newenvironment{kitpropiedades}[1]{%
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte,
+        title=\textbf{#1}, fonttitle=\bfseries]
+}{%
+    \end{tcolorbox}
+}
+
+\newtcolorbox{desafiobox}[1]{
+    colback=white,
+    colframe=azulFuerte,
+    fonttitle=\bfseries,
+    coltitle=white,
+    title=#1,
+    arc=8pt,
+    boxrule=1.2pt,
+    enhanced,
+    drop shadow={black!5}
+}
+
+\newtcolorbox{ejerciciobox}[1]{
+    enhanced, boxrule=1pt, colframe=azulFuerte, colback=white,
+    sharp corners, drop shadow={black!10!white},
+    title=\textbf{#1}, coltitle=white, colbacktitle=azulFuerte,
+    fonttitle=\small\sffamily, attach boxed title to top left={xshift=0.3cm, yshift=-3mm},
+    boxed title style={sharp corners, boxrule=0.5pt, colframe=azulFuerte}
+}
+
+% ============================================================
+% ENTORNOS DE SECCIÓN
+% ============================================================
+
+\newenvironment{introduccion}{%
+    \section*{Introducción}%
+    \MarcaAgua
+}{}
+
+\newenvironment{ejercicios}{%
+    \MarcaAgua
+}{}
+
+% ============================================================
+\begin{document}
+\thispagestyle{plain}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\AddToShipoutPicture*{%
+    \put(54, 700){\includegraphics[width=2cm]{\logoup}}
+    \put(420, 706){\includegraphics[width=5cm]{\logousach}}
+}
+
+\vspace*{0.5cm}
+
+\begin{center}
+    \color{azulFuerte}
+    {\huge \textbf{GUÍA DE EJERCICIOS}} \\[0.5cm]
+    {\Huge \textbf{\curso}} \\[0.3cm]
+    {\Large \guiasnumero} \\[1.5cm]
+
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte, arc=10pt,
+        width=0.85\textwidth, center, boxrule=1.5pt]
+        \centering
+        \vspace{0.2cm}
+        {\Large \textbf{Contenidos}}
+        \vspace{0.3cm}
+        \color{black}
+        \begin{itemize}[leftmargin=3cm]
+            \listacontenidos
+        \end{itemize}
+        \vspace{0.2cm}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\Large \textbf{\semestre}} \\[0.8cm]
+    {\large \textbf{\preparadopor}}
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+    {\color{azulFuerte}\hrule height 0.5pt}
+    \vspace{0.3cm}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Instagram:} \\
+        \small\href{\instagraminstitucion}{@usach.premium}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Web:} \\
+        \small\href{http://\webinstitucion}{\webinstitucion}
+    \end{minipage}
+\end{center}
+
+\pagenumbering{arabic}
+\newpage
+
+% ============================================================
+% KIT DE PROPIEDADES
+% ============================================================
+\begin{ejercicios}
+
+\begin{kitpropiedades}{RESUMEN: FÓRMULAS Y VALORES NOTABLES}
+\begin{multicols}{2}
+    \textbf{Definiciones de Razones Trigonométricas:}
+    \begin{itemize}[leftmargin=10pt]
+        \item $\sen \alpha = \frac{op}{hip} = \frac{a}{c} \quad \csc \alpha = \frac{hip}{op} = \frac{c}{a}$
+        \item $\cos \alpha = \frac{ady}{hip} = \frac{b}{c} \quad \sec \alpha = \frac{hip}{ady} = \frac{c}{b}$
+        \item $\tan \alpha = \frac{op}{ady} = \frac{a}{b} \quad \cot \alpha = \frac{ady}{op} = \frac{b}{a}$
+    \end{itemize}
+
+    \columnbreak
+
+    \textbf{Identidades de Suma y Resta:}
+    \begin{itemize}[leftmargin=10pt]
+        \item $\sen(\alpha \pm \beta) = \sen\alpha \cos\beta \pm \sen\beta \cos\alpha$
+        \item $\cos(\alpha \pm \beta) = \cos\alpha \cos\beta \mp \sen\alpha \sen\beta$
+    \end{itemize}
+\end{multicols}
+
+\vspace{0.2cm}
+
+\begin{center}
+    \small
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \rowcolor{azulFuerte} \color{white} $\alpha$ & \color{white} $0^\circ$ & \color{white} $30^\circ$ & \color{white} $45^\circ$ & \color{white} $60^\circ$ & \color{white} $90^\circ$ \\ \hline
+    $\sen(\alpha)$ & $0$ & $1/2$ & $\sqrt{2}/2$ & $\sqrt{3}/2$ & $1$ \\ \hline
+    $\cos(\alpha)$ & $1$ & $\sqrt{3}/2$ & $\sqrt{2}/2$ & $1/2$ & $0$ \\ \hline
+    $\tan(\alpha)$ & $0$ & $\sqrt{3}/3$ & $1$ & $\sqrt{3}$ & $\not\exists$ \\ \hline
+    $\csc(\alpha)$ & $\not\exists$ & $2$ & $\sqrt{2}$ & $2\sqrt{3}/3$ & $1$ \\ \hline
+    $\sec(\alpha)$ & $1$ & $2\sqrt{3}/3$ & $\sqrt{2}$ & $2$ & $\not\exists$ \\ \hline
+    $\cot(\alpha)$ & $\not\exists$ & $\sqrt{3}$ & $1$ & $\sqrt{3}/3$ & $0$ \\ \hline
+    \end{tabular}
+\end{center}
+\end{kitpropiedades}
+
+\vspace{0.4cm}
+
+% ============================================================
+% BLOQUE DE PROBLEMAS
+% ============================================================
+
+{\small\color{gray}\textit{Nota: algunos ejercicios de esta guía fueron extraídos del material oficial de la Coordinación de Cálculo I. Se dan los créditos correspondientes a sus autores.}}
+
+\vspace{0.3cm}
+
+\begin{ejerciciobox}{Ejercicio 1}
+\centering
+\begin{minipage}[c]{0.58\textwidth}
+    1. Calcula la altura de un árbol que a una distancia de 10 m se ve bajo un ángulo de elevación de 30°.
+\end{minipage}
+\begin{minipage}[c]{0.38\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.7, >=Stealth] 
+        % Árbol a la derecha
+        \shade[left color=marronMadera!90!black, right color=marronMadera!60] (3.8,0) rectangle (4,2.2);
+        \foreach \p in {(3.6,2.4), (3.9,3), (4.2,2.4), (3.9,2.3)} {\shade[ball color=verdePro!80] \p circle (0.55);}
+        % Triángulo hacia la izquierda
+        \draw[azulMedio, thick, dashed] (0,0) -- (3.9,2.4) -- (3.9,0) -- cycle;
+        \draw[azulMedio, thick] (0.6,0) arc (0:30:0.6);
+        \node[azulFuerte] at (1,0.3) {\tiny 30°}; 
+        \draw[|<->|, azulFuerte] (0,-0.4) -- (3.9,-0.4) node[midway, fill=white, font=\tiny] {10 m};
+    \end{tikzpicture}
+\end{minipage}
+\end{ejerciciobox}
+
+\begin{ejerciciobox}{Ejercicio 2}
+\centering
+\begin{minipage}[c]{0.52\textwidth}
+    2. Calcule la altura $h_{c}$ del siguiente triángulo equilátero de lado 2.
+\end{minipage}
+\begin{minipage}[c]{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=Stealth]
+        \fill[yellow!20] (0,0) -- (1,1.73) -- (1,0) -- cycle;
+        \fill[blue!15] (1,0) -- (1,1.73) -- (2,0) -- cycle;
+        \draw[thick] (0,0) node[below left] {\small A} -- (2,0) node[below right] {\small B} -- (1,1.73) node[above] {\small C} -- cycle;
+        \draw[dashed] (1,1.73) -- (1,0) node[midway, right] {\small $h_c$};
+        \draw (0.3,0) arc (0:60:0.3); \node at (0.2,0.15) {\tiny 60°};
+        \draw (1.7,0) arc (180:120:0.3); \node at (1.8,0.15) {\tiny 60°};
+        \draw (0.85,1.47) arc (240:300:0.3);
+        \node at (0.88,1.35) {\tiny $x$}; \node at (1.12,1.35) {\tiny $x$};
+        \draw (0.85,0) -- (0.85,0.15) -- (1,0.15);
+        \node[left] at (0.5,0.9) {\small 2}; \node[right] at (1.5,0.9) {\small 2};
+        \draw [thick, decoration={brace, mirror, raise=5pt}, decorate] (0,0) -- (1,0);
+        \draw [thick, decoration={brace, mirror, raise=5pt}, decorate] (1,0) -- (2,0);
+    \end{tikzpicture}
+\end{minipage}
+\end{ejerciciobox}
+
+\begin{ejerciciobox}{Ejercicio 3}
+\centering
+\begin{minipage}[c]{0.58\textwidth}
+    3. Para medir la altura de un cerro se realizan dos mediciones. Desde un punto A el ángulo es de 45°. Luego, 0,5 km más lejos, el ángulo es de 30°. Determine la altura $h$.
+\end{minipage}
+\begin{minipage}[c]{0.38\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.55, >=Stealth] 
+        % Cerro a la izquierda
+        \shade[top color=gray!10, bottom color=gray!50] (0,0) -- (1.3,3) -- (2.5,0);
+        \draw[azulFuerte, thick] (0,0) -- (1.3,3) -- (2.5,0);
+        \draw[thick] (0,0) -- (6.5,0);
+        
+        % Línea de altura h
+        \draw[dashed, gray] (1.3,3) -- (1.3,0);
+        \node[right, azulFuerte] at (1.3,1.5) {\tiny $h$};
+
+        % Mediciones hacia la derecha
+        \draw[azulMedio, dashed] (6.5,0) -- (1.3,3); % Ángulo 30
+        \draw[azulMedio, dashed] (3.7,0) -- (1.3,3); % Ángulo 45
+        
+        % Ángulos
+        \draw (5.7,0) arc (180:150:0.8); \node at (5.3,0.4) {\tiny 30°};
+        \draw (3.2,0) arc (180:129:0.5); \node at (2.9,0.5) {\tiny 45°};
+        
+        % Cotas
+        \draw[|<->|, gray] (3.7,-0.6) -- (6.5,-0.6) node[midway, fill=white, font=\tiny] {0,5 km};
+        \draw[|<->|, azulMedio] (1.3,-0.6) -- (3.7,-0.6) node[midway, fill=white, font=\tiny] {$x$};
+    \end{tikzpicture}
+\end{minipage}
+\end{ejerciciobox}
+
+\begin{ejerciciobox}{Ejercicio 4}
+\centering
+\begin{minipage}[c]{0.58\textwidth}
+    4. Un carpintero corta el borde de un tablero de 3'' de largo, con una inclinación de 30° de la vertical, empezando desde un punto ubicado a 3/4'' del borde. Determine la longitud del corte diagonal.
+\end{minipage}
+\begin{minipage}[c]{0.38\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.8, >=Stealth]
+        \fill[marronMadera!15] (0,0) rectangle (3,2.5);
+        \draw[azulFuerte, thick] (0,0) rectangle (3,2.5);
+        \draw[red!90!black, ultra thick] (0.8,2.5) -- (2.3,0) node[midway, right, xshift=2pt] {\small $y$};
+        \draw[dashed, gray] (0.8,2.5) -- (0.8,0);
+        \draw (0.8,1.9) arc (-90:-61:0.6); \node at (1.1,1.7) {\tiny 30°};
+        \draw[|<->|, gray] (0.8,-0.4) -- (2.3,-0.4) node[midway, below] {\small $x$};
+        \draw[|<->|, azulFuerte] (0,2.8) -- (0.8,2.8) node[midway, above, font=\tiny] {3/4''};
+        \draw[|<->|, azulFuerte] (-0.3,0) -- (-0.3,2.5) node[midway, rotate=90, above, font=\tiny] {3''};
+    \end{tikzpicture}
+\end{minipage}
+\end{ejerciciobox}
+
+\vspace{0.4cm}
+\begin{center}
+    \color{azulFuerte}\textbf{\small IDENTIDADES TRIGONOMÉTRICAS}
+    \hrule height 0.5pt
+\end{center}
+
+\begin{ejerciciobox}{Ejercicios 5 y 6}
+    \vspace{0.3cm}
+    Resuelva las siguientes identidades trigonométricas:
+    \begin{enumerate}[label=\textbf{\alph*)}]
+        \item $\tan(\theta) \cdot \cot(\theta) - \cos^{2}(\theta) = \sen^{2}(\theta)$
+        \item $\sen(\theta)(\cot(\theta) + \tan(\theta)) = \sec(\theta)$
+    \end{enumerate}
+\end{ejerciciobox}
+
+\end{ejercicios}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
