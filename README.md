@@ -134,6 +134,20 @@ template/
 
 ---
 
+## Protocolo de creación y distribución de material
+
+Todo material académico producido por ayudantes de Usach Premium debe seguir este flujo antes de llegar a los estudiantes:
+
+1. **Crear en Overleaf/LaTeX** usando el template institucional (`template/`).
+2. **Compartir el proyecto Overleaf** como colaborador al correo **usach.premium@usach.cl** para revisión.
+3. **Revisión y aprobación** por el coordinador de la asignatura.
+4. **Publicación en Uvirtual** en la sección correspondiente del ramo.
+5. **Difusión** por WhatsApp u otros canales solo después de estar publicado en Uvirtual.
+
+> Este flujo aplica a guías, resúmenes y cualquier material de apoyo que se distribuya con el sello de Usach Premium.
+
+---
+
 ## Cómo agregar contenido nuevo
 
 ### Nueva guía
