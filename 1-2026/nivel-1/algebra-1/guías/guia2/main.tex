@@ -1,0 +1,678 @@
+% ============================================================
+%  GUÍA 2 — SISTEMAS DE ECUACIONES
+%  Basada en la plantilla institucional Usach Premium
+% ============================================================
+
+\documentclass[letterpaper, 12pt]{article}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\tcbuselibrary{skins}
+
+% ============================================================
+% GEOMETRÍA
+% ============================================================
+\geometry{letterpaper, margin=1.5cm, top=3cm, bottom=2.5cm, headheight=2cm}
+
+% ============================================================
+% COLORES INSTITUCIONALES
+% ============================================================
+\definecolor{celesteSuave}{HTML}{F0F7FF}
+\definecolor{azulFuerte}{HTML}{1A5276}
+\definecolor{turquesaUsach}{HTML}{33CCCC}
+\definecolor{enlace}{HTML}{1A5276}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\newcommand{\logoup}{./images/logo_up.png}
+\newcommand{\logousach}{./images/logo_usach.png}
+\newcommand{\logofondo}{./images/logo_up.png}
+
+% ============================================================
+% INFORMACIÓN DE LA GUÍA
+% ============================================================
+\newcommand{\institucion}{Usach Premium}
+\newcommand{\curso}{Álgebra I}
+\newcommand{\guiasnumero}{Guía 2 - Sistemas de Ecuaciones}
+\newcommand{\semestre}{1er. Semestre de 2026}
+\newcommand{\preparadopor}{Trinidad Palma y Luis Vásquez — Usach Premium.}
+\newcommand{\webinstitucion}{www.usachpremium.cl}
+\newcommand{\instagraminstitucion}{https://www.instagram.com/usach.premium}
+\newcommand{\transparencia}{0.05}
+\newcommand{\fraseportada}{"Por y para estudiantes"}
+
+\newcommand{\listacontenidos}{
+    \item[\color{azulFuerte}$\Rightarrow$] Sistemas de ecuaciones 2x2
+    \item[\color{azulFuerte}$\Rightarrow$] Sistemas de ecuaciones 3x3
+    \item[\color{azulFuerte}$\Rightarrow$] Problemas contextualizados
+}
+
+% ============================================================
+% HYPERREF
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enlace,
+    urlcolor=enlace,
+    citecolor=enlace,
+    pdfborder={0 0 0},
+}
+
+% ============================================================
+% ENCABEZADO Y PIE DE PÁGINA
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+    \includegraphics[height=1.2cm]{\logoup}%
+}
+\fancyhead[R]{%
+    \begin{minipage}[b]{0.42\textwidth}
+        \raggedleft
+        \fontsize{9pt}{11pt}\selectfont
+        \textbf{\color{azulFuerte}\institucion} \\
+        \curso\ — \guiasnumero \\
+        \textit{\color{gray}@usach.premium}
+    \end{minipage}\hspace{0.1cm}%
+    \includegraphics[height=1.2cm]{\logousach}%
+}
+\fancyfoot[L]{\fontsize{9pt}{11pt}\selectfont \textit{\fraseportada}}
+\fancyfoot[R]{\fontsize{9pt}{11pt}\selectfont Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% ============================================================
+% MARCA DE AGUA
+% ============================================================
+\newcommand{\MarcaAgua}{
+    \AddToShipoutPicture{
+        \AtPageCenter{
+            \makebox(0,0){%
+                \transparent{\transparencia}%
+                \includegraphics[width=0.7\textwidth]{\logofondo}%
+            }
+        }
+    }
+}
+
+% ============================================================
+% CAJAS REUTILIZABLES
+% ============================================================
+
+\newenvironment{kitpropiedades}[1]{%
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte,
+        title=\textbf{#1}, fonttitle=\bfseries]
+}{%
+    \end{tcolorbox}
+}
+
+\newtcolorbox{desafiobox}[1]{
+    colback=white,
+    colframe=azulFuerte,
+    fonttitle=\bfseries,
+    coltitle=white,
+    title=#1,
+    arc=8pt,
+    boxrule=1.2pt,
+    enhanced,
+    drop shadow={black!5}
+}
+
+\newenvironment{solbox}[1]{%
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte,
+        title=\textbf{#1}, fonttitle=\bfseries]
+}{%
+    \end{tcolorbox}
+}
+
+% ============================================================
+% ENTORNOS DE SECCIÓN
+% ============================================================
+
+\newenvironment{introduccion}{%
+    \section*{Introducción}%
+    \MarcaAgua
+}{}
+
+\newenvironment{ejercicios}{%
+    \MarcaAgua
+}{}
+
+\newenvironment{soluciones}{%
+    \newpage
+    \begin{center}
+        \begin{tcolorbox}[colback=azulFuerte, colframe=azulFuerte,
+            colupper=white, width=0.8\textwidth, center, arc=10pt]
+            \centering\Large\textbf{SOLUCIONARIO}
+        \end{tcolorbox}
+    \end{center}
+    \MarcaAgua
+    \small
+}{}
+
+% ============================================================
+\begin{document}
+\thispagestyle{plain}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\AddToShipoutPicture*{%
+    \put(54, 700){\includegraphics[width=2cm]{\logoup}}
+    \put(420, 706){\includegraphics[width=5cm]{\logousach}}
+}
+
+\vspace*{0.5cm}
+
+\begin{center}
+    \color{azulFuerte}
+    {\huge \textbf{GUÍA DE EJERCICIOS}} \\[0.5cm]
+    {\Huge \textbf{\curso}} \\[0.3cm]
+    {\Large \guiasnumero} \\[1.5cm]
+
+    \begin{tcolorbox}[colback=celesteSuave, colframe=azulFuerte, arc=10pt,
+        width=0.85\textwidth, center, boxrule=1.5pt]
+        \centering
+        \vspace{0.2cm}
+        {\Large \textbf{Contenidos}}
+        \vspace{0.3cm}
+        \color{black}
+        \begin{itemize}[leftmargin=3cm]
+            \listacontenidos
+        \end{itemize}
+        \vspace{0.2cm}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\Large \textbf{\semestre}} \\[0.8cm]
+    {\large \textbf{\preparadopor}}
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+    {\color{azulFuerte}\hrule height 0.5pt}
+    \vspace{0.3cm}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Instagram:} \\
+        \small\href{\instagraminstitucion}{@usach.premium}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \textbf{Web:} \\
+        \small\href{http://\webinstitucion}{\webinstitucion}
+    \end{minipage}
+\end{center}
+
+\pagenumbering{arabic}
+\newpage
+
+% ============================================================
+% ESTRATEGIAS DE RESOLUCIÓN
+% ============================================================
+\begin{kitpropiedades}{ESTRATEGIAS DE RESOLUCIÓN}
+    Para enfrentar esta guía con éxito, recuerda que resolver un sistema de ecuaciones no es solo un ejercicio algebraico mecánico, sino que buscas encontrar el punto exacto $(x, y)$ donde se cruzan dos rectas, o el punto $(x, y, z)$ donde se interceptan tres planos en el espacio.
+
+    \vspace{0.5em}
+    \textbf{Métodos para sistemas de $2\times2$:}
+    \begin{itemize}[itemsep=0.5em]
+        \item \textbf{Reducción:} Ideal para eliminar variables sumando ecuaciones hacia abajo.
+        \item \textbf{Sustitución:} Perfecto si ya tienes una letra casi despejada.
+        \item \textbf{Igualación:} Útil cuando es fácil despejar la misma variable en ambas ecuaciones.
+    \end{itemize}
+
+    \vspace{0.5em}
+    \textbf{Para sistemas de $3\times3$:} \\
+    Tu mejor estrategia es usar la \textbf{reducción} tomando pares de ecuaciones para eliminar la misma incógnita en ambos, transformando así el problema original en un sistema de $2\times2$ que ya sabes resolver.
+
+    \vspace{0.5em}
+    \textbf{Interpretación de resultados:} \\
+    Revisa siempre tus signos negativos al operar y no te asustes si durante el desarrollo llegas a un resultado extraño:
+    \begin{itemize}[itemsep=0.5em]
+        \item \textbf{Si llegas a una falsedad matemática (ej. $0=5$):} Esto simplemente significa que el sistema \textbf{no tiene solución} (son rectas o planos paralelos que no se tocan).
+        \item \textbf{Si llegas a una identidad obvia (ej. $0=0$):} Significará que las ecuaciones representan la misma figura geométrica y, por lo tanto, el sistema tendrá \textbf{infinitas soluciones}.
+    \end{itemize}
+\end{kitpropiedades}
+
+\vspace{2em}
+
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{./images/usachin_leyendo.png}
+\end{center}
+
+\newpage
+
+% ============================================================
+% EJERCICIOS
+% ============================================================
+\begin{ejercicios}
+\section*{Ejercicios}
+\begin{enumerate}[label=\arabic*., itemsep=2em]
+    
+    \item Resuelva los siguientes sistemas de ecuaciones lineales de 2x2:
+    
+    % Iniciamos una sub-lista para los ejercicios específicos
+    \begin{enumerate}[label=\alph*), itemsep=0.5em]
+        
+        \item 
+        \begin{align*}
+            2x + 3y &= 8 \\
+            x - y &= 1
+        \end{align*}
+        
+        \item 
+        \begin{align*}
+            4x - 2y &= 10 \\
+            3x + y &= 5
+        \end{align*}
+        
+        \item 
+        \begin{align*}
+            5x + 4y &= 22 \\
+            -x + 2y &= 4
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + y &= 2 \\
+            2x - y &= 1
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            3x + y &= 9 \\
+            x - 2y &= -4
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x + y &= 2 \\
+            x - y &= -5
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + 3y &= -3 \\
+            4x - y &= 14
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            3x + 2y &= 10 \\
+            x - y &= -5
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - 2y &= 2 \\
+            3x + 4y &= 16
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - y &= 1 \\
+            2x + 3y &= -13
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x + 5y &= 10 \\
+            x - 3y &= 5
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            4x + y &= 7 \\
+            2x - 3y &= 7
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + 4y &= 5 \\
+            -2x + y &= 8
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            5x - y &= 9 \\
+            3x + 2y &= -5
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - 3y &= -1 \\
+            3x - 2y &= -10
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + y &= 8 \\
+            x - 2y &= 2
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x - y &= 3 \\
+            x + 2y &= 9
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            7x - 2y &= -5 \\
+            x + y &= -2
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + 5y &= -6 \\
+            3x - 2y &= 16
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x + 3y &= 8 \\
+            -x + y &= 6
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            3x - y &= 14 \\
+            2x + 3y &= 13
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - 4y &= 5 \\
+            4x + y &= -14
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            5x - 2y &= 6 \\
+            x + 3y &= 8
+        \end{align*}
+
+        \item \textbf{Entrenamiento deportivo:}\\
+En un entrenamiento semanal, un atleta corre un total de 30 km divididos en dos modalidades: trotes suaves y series de velocidad. Si la distancia que recorrió en trotes suaves es exactamente el doble de la distancia que corrió en las series de velocidad, ¿cuántos kilómetros corrió en cada modalidad?
+
+\item \textbf{Alimentación de mascotas:}\\
+En una casa hay dos perros: un adulto y un cachorro de un mes. En total, el dueño les sirve 12 porciones de alimento al día entre los dos. Si el perro adulto come 4 porciones más que el cachorro diariamente, ¿cuántas porciones consume cada perro?
+
+\item \textbf{El quiosco de la universidad:}\\
+En el quiosco de la facultad, un grupo de alumnos compra 3 empanadas y 2 cafés por un total de \$8.500. Más tarde, otro grupo compra 2 empanadas y 4 cafés por \$9.000 pagando los mismos precios. ¿Cuál es el valor exacto de una empanada y de un café en ese quiosco?
+
+\item \textbf{Partido de fútbol:}\\
+Dos hermanos juegan una pichanga de fin de semana con sus amigos. Entre los dos logran anotar un total de 9 goles para su equipo. Si el hermano mayor anotó el doble de goles que el hermano menor, menos 3 goles, ¿cuántos goles marcó cada uno?
+        
+    \end{enumerate} % Cierre de la sub-lista
+    \newpage
+    
+    
+    \item Resuelva los siguientes sistemas de ecuaciones lineales de 3x3.
+        \begin{enumerate}[label=\alph*), itemsep=1em]
+            
+        \item 
+        \begin{align*}
+            x + y + z &= 3 \\
+            2x - y + z &= 2 \\
+            x + 2y - z &= 2
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + y + z &= 6 \\
+            x - y + 2z &= 7 \\
+            2x + y - z &= 2
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x + y + z &= 3 \\
+            x - 2y - z &= 1 \\
+            3x + y - 2z &= -2
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - y + z &= 2 \\
+            2x + y - z &= 7 \\
+            x + 2y + 3z &= 10
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + 2y + z &= 2 \\
+            2x - y + 3z &= -7 \\
+            -x + y - 2z &= 5
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + y + z &= 6 \\
+            2x - 3y + z &= 8 \\
+            -x + 2y + 2z &= 6
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            3x - y + 2z &= -4 \\
+            x + 2y - z &= 9 \\
+            2x + y + z &= 3
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x + y - 3z &= 1 \\
+            x - 2y + z &= -7 \\
+            3x + y + 2z &= 6
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + y + z &= 5 \\
+            2x - y - z &= 7 \\
+            x + 3y + 2z &= 4
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - 2y + z &= 5 \\
+            2x + y - z &= -10 \\
+            -x + 3y + 2z &= 9
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + y - z &= 2 \\
+            3x - y + 2z &= 8 \\
+            2x + 2y + z &= 10
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x + y + z &= 3 \\
+            x - 2y + 3z &= 9 \\
+            -x + y - 2z &= -6
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            4x - y + z &= 1 \\
+            x + 2y - 3z &= 5 \\
+            2x - y + 2z &= 1
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + 3y + z &= 4 \\
+            2x - y + 2z &= 1 \\
+            -x + 2y - z &= 1
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x - 3y + z &= 3 \\
+            x + 4y - 2z &= 15 \\
+            3x - y + z &= 12
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + 2y - z &= 4 \\
+            3x - y + 2z &= -3 \\
+            -2x + y + z &= -5
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - y + 3z &= 0 \\
+            2x + 3y - z &= 2 \\
+            4x + y + z &= 6
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            2x - y + z &= -3 \\
+            x + 3y - z &= -4 \\
+            -x + 2y + 2z &= -9
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x + y + z &= 2 \\
+            3x - 2y + z &= 5 \\
+            2x + 3y - 2z &= 13
+        \end{align*}
+
+        \item 
+        \begin{align*}
+            x - y + 2z &= 2 \\
+            2x + y - 3z &= 9 \\
+            x + 2y + z &= 13
+        \end{align*}
+        \item \textbf{Implementos de fútbol:}\
+        Tres amigos del mismo equipo compran implementos deportivos. Andrés compra 1 balón, 2 petos y 1 silbato por 15.000. Beto compra 2 balones, 1 peto y 1 silbato por 20.000. Carlos compra 1 balón, 1 peto y 2 silbatos por 13.000. ¿Cuál es el precio exacto de cada artículo?
+        
+        \item \textbf{Cafetería de la facultad:}\
+        En el quiosco de la universidad se venden tres productos clásicos. El primer grupo de alumnos compra 2 cafés, 1 empanada y 1 alfajor por 4.500. El segundo grupo compra 1 café, 2 empanadas y 1 alfajor por 5.500. Un tercer grupo compra 1 café, 1 empanada y 2 alfajores por 4.000. ¿Cuánto cuesta cada producto por separado?
+        
+        \item \textbf{Registro de entrenamiento:}\
+        Un corredor registra su entrenamiento semanal que consta de tres modalidades: trote suave, carrera de velocidad y cuestas. En total, durante la semana recorre 40 km. Se sabe que la distancia de trote suave es exactamente igual a la suma de las otras dos modalidades. Además, corrió 6 km más en carrera de velocidad que en cuestas. ¿Cuántos kilómetros recorrió en cada modalidad?
+        
+        \item \textbf{Alimento para perros:}\
+        Una tienda de mascotas vende tres categorías de alimento para perro: Premium, Estándar y Económico. Un dueño compra 1 saco de cada categoría para probarlos y paga 70.000 en total. Se sabe que el saco Premium cuesta el doble que el saco Económico. Además, si comprara 2 sacos Estándar y 1 Económico, pagaría 65.000. ¿Cuál es el precio de cada saco de alimento?
+        \end{enumerate}
+    
+
+\end{enumerate}
+\end{ejercicios}
+
+\newpage
+
+% ============================================================
+% SOLUCIONARIO
+% ============================================================
+\begin{soluciones}
+
+\begin{solbox}{I. Soluciones — Sistemas 2x2}
+    \begin{multicols}{2}
+    \begin{enumerate}[label=\alph*), itemsep=0.3em]
+            \item $x = \frac{11}{5}, \quad y = \frac{6}{5}$
+            \item $x = 2, \quad y = -1$
+            \item $x = 2, \quad y = 3$
+            \item $x = 1, \quad y = 1$
+            \item $x = 2, \quad y = 3$
+            \item $x = -1, \quad y = 4$
+            \item $x = 3, \quad y = -2$
+            \item $x = 0, \quad y = 5$
+            \item $x = 4, \quad y = 1$
+            \item $x = -2, \quad y = -3$
+            \item $x = 5, \quad y = 0$
+            \item $x = 2, \quad y = -1$
+            \item $x = -3, \quad y = 2$
+            \item $x = 1, \quad y = -4$
+            \item $x = -4, \quad y = -1$
+            \item $x = 6, \quad y = 2$
+            \item $x = 3, \quad y = 3$
+            \item $x = -1, \quad y = -1$
+            \item $x = 4, \quad y = -2$
+            \item $x = -2, \quad y = 4$
+            \item $x = 5, \quad y = 1$
+            \item $x = -3, \quad y = -2$
+            \item $x = 2, \quad y = 2$
+    \end{enumerate}
+    \end{multicols}
+    \textbf{Problemas contextualizados:}
+    \begin{enumerate}[label=\alph*), itemsep=0.4em, start=24]
+            \item \textbf{Entrenamiento deportivo:} $20$ km en trote suave y $10$ km en series de velocidad.
+            \item \textbf{Alimentación de mascotas:} $8$ porciones el adulto y $4$ porciones el cachorro.
+            \item \textbf{El quiosco:} $\$2.000$ cada empanada y $\$1.250$ cada café.
+            \item \textbf{Partido de fútbol:} $5$ goles el hermano mayor y $4$ goles el hermano menor.
+    \end{enumerate}
+\end{solbox}
+
+\vspace{1em}
+
+\begin{solbox}{II. Soluciones — Sistemas 3x3}
+    \begin{multicols}{2}
+    \begin{enumerate}[label=\alph*), itemsep=0.3em]
+            \item $x = 1,\ y = 1,\ z = 1$
+            \item $x = 2,\ y = 1,\ z = 3$
+            \item $x = 1,\ y = -1,\ z = 2$
+            \item $x = 3,\ y = 2,\ z = 1$
+            \item $x = -1,\ y = 2,\ z = -1$
+            \item $x = 2,\ y = 0,\ z = 4$
+            \item $x = 1,\ y = 3,\ z = -2$
+            \item $x = 0,\ y = 4,\ z = 1$
+            \item $x = 4,\ y = -2,\ z = 3$
+            \item $x = -2,\ y = -1,\ z = 5$
+            \item $x = 2,\ y = 2,\ z = 2$
+            \item $\infty$ sol.: $x = 3-z,\ y = z-3$
+            \item $x = 1,\ y = 5,\ z = 2$
+            \item $\infty$ sol.: $x = 1-z,\ y = 1$
+            \item $x = 5,\ y = 2,\ z = -1$
+            \item $x = 1,\ y = 0,\ z = -3$
+            \item $x = 2,\ y = -1,\ z = -1$
+            \item $x = -1,\ y = -2,\ z = -3$
+            \item $x = 3,\ y = 1,\ z = -2$
+            \item $x = 4,\ y = 4,\ z = 1$
+    \end{enumerate}
+    \end{multicols}
+    \textbf{Problemas contextualizados:}
+    \begin{enumerate}[label=\alph*), itemsep=0.4em, start=21]
+            \item \textbf{Implementos de fútbol:} $\$8.000$ el balón, $\$3.000$ el peto y $\$1.000$ el silbato.
+            \item \textbf{Cafetería:} $\$1.000$ el café, $\$2.000$ la empanada y $\$500$ el alfajor.
+            \item \textbf{Entrenamiento:} 20 km trote suave, 13 km velocidad y 7 km cuestas.
+            \item \textbf{Alimento para perros:} $\$30.000$ Premium, $\$25.000$ Estándar y $\$15.000$ Económico.
+    \end{enumerate}
+\end{solbox}
+
+\end{soluciones}
+
+\end{document}
